@@ -3,27 +3,14 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
+    <div class="header">
+        <div class="header-text"><p><%=title%></p></div>
+  
+      </div>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <button onclick="getData()">tEST API</button>
-    <script>
-      async function getData() {
-    try {
-      let limit = 5;
-      for(number = 0; number !=limit; number++){
-      const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=6a1bd996ef94ac5a2174249827b1e01e&language=en-US&page=${number}`);
-      const data = await response.json();
-      console.log(data);
-    }
-    } catch (error) {
-      console.error('Error retrieving data:', error);
-    }
- 
-  }
-
-    </script>
   </body>
-</html>
+  </html>

@@ -6,3 +6,31 @@ body {
 a {
   color: #00B7FF;
 }
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../images/headerImage.png");
+  height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(3px);
+}
+
+.header-text {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  color: yellow; 
+  font-size: 100px; 
+  text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+}
+
