@@ -12,7 +12,18 @@ router.get('/', async function(req, res, next) {
       const data = await response.json();
       movies = movies.concat(data.results);
     }
-    res.render('top100', { title: 'MovieDatabase', movies: movies });
+    
+    const firstMovie = movies.shift();
+    const movieDetails = []; // Array to store movie details
+
+    // Iterate through each movie and fetch its details
+    await Promise.all(movies.map(async (movie) => {
+      const response = await fetch(`https://www.omdbapi.com/?apikey=dda73268&t=${encodeURIComponent(movie.title)}`);
+      const data = await response.json();
+      movieDetails.push(data);
+    }));
+
+    res.render('top100', { title: 'MovieDatabase', movies: movieDetails });
   } catch (error) {
     console.error('Error retrieving data:', error);
     next(error);

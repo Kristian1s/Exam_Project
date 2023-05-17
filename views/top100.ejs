@@ -4,15 +4,17 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">  
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div class="data2">Data goes here</div>
+    <%- include('./partials/navbar.ejs') %>
+
+    <div class="data2"></div>
+    <table>
     <% if (movies && movies.length) { %>
       <% movies.forEach(function(movie) { %>
-        <% if (movie && movie.title) { %>
-          <h2><%= movie.title %></h2>
+        <% if (movie) { %>
+          <p><%= movie.Title %></p>
         <% } else { %>
           <h2>Movie Title Not Available</h2>
         <% } %>
@@ -20,5 +22,6 @@
     <% } else { %>
       <h2>No movies available</h2>
     <% } %>
+  </table>
   </body>
   </html>
