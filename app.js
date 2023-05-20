@@ -8,7 +8,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var top100Router = require('./routes/top100');
-
+var apiScriptRouter = require('./routes/apiScript')
 var db = require("./models");
 db.sequelize.sync({ force: false })
 
@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/top100', top100Router);
+app.use('/apiScript', apiScriptRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
