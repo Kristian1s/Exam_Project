@@ -13,7 +13,7 @@ movieDetails.forEach(function (movie) {
     let genreArray =[];
     const genresToSplit = movie.Genre.split(",");
     genresToSplit.forEach(function (genre) {
-      const trimmedGenre = genresToSplit.trim();
+      const trimmedGenre = genre.trim();
       genreArray.push(trimmedGenre);
     });
     const genre= genreArray;

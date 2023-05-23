@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
     Movie.associate = function(models) {
        Movie.belongsTo(models.Director);
        Movie.belongsToMany(models.Actor, { through: 'MovieActor',timestamps: false} );
-       Movie.belongsTo(models.Genre); 
+       Movie.belongsToMany(models.Genre,{ through: 'MovieGenre',timestamps: false} );
        Movie.hasMany(models.Watchlist);
        Movie.belongsTo(models.Year);
        Movie.belongsTo(models.Rating);

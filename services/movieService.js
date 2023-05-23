@@ -5,17 +5,32 @@ class MovieService{
         this.Movie = db.Movie;
         this.Actor = db.Actor;
         this.MovieActor = db.MovieActor;
+        this.Genre = db.Genre;
+        this.MovieGenre = db.MovieGenre;
     }
     async getAll() {
-        return this.Movie.findAll({});
+        return this.Movie.findAll({
+          include: [
+            {model: this.Actor,
+            through: this.MovieActor},
+
+            {model: this.Genre,
+            through: this.MovieGenre}
+          ]
+        });
       }
     
-      async create(Title, Plot, Runtime, Poster) {
+      async create(Title, Plot, Runtime, Poster, directorId, yearId, ratingId, genreIDs) {
         return this.Movie.create({
             Title: Title,
             Plot: Plot,
             Runtime: Runtime,
             Poster: Poster,
+            DirectorId: directorId,
+            YearId: yearId,
+            RatingId: ratingId,
+            GenreIds: genreIDs
+
         });
       }
     
@@ -26,7 +41,10 @@ class MovieService{
           },
           include: [
             {model: this.Actor,
-            through: this.MovieActor}
+            through: this.MovieActor},
+
+            {model: this.Genre,
+            through: this.MovieGenre}
           ]
         });
       }

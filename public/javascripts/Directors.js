@@ -5,11 +5,9 @@ let directorArray = [];
 let movieDetails = await GetMovieDetails();
 movieDetails.forEach(function (movie) {
   if (movie.Director) {
-    // Check if  property exists
     const directors = movie.Director.split(",");
-
     directors.forEach(function (director) {
-      const trimmedDirector = director.trim(); // Remove leading/trailing spaces from 
+      const trimmedDirector = director.trim();
 
       if (!directorArray.includes(trimmedDirector)) {
         directorArray.push(trimmedDirector);

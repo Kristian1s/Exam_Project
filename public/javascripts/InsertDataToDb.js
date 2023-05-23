@@ -7,18 +7,16 @@ const { getMovie } = require("./Movie")
 
 
 
-async function writeDataToDb(){
-const promise = new Promise((resolve, reject) =>{
-    
-})
-getGenres()
-getYears()
-getDirectors()
-getActors()
-getRating()
+async function writeDataToDb() {
+  const genresData = await getGenres();
+  const yearsData = await getYears();
+  const directorsData = await getDirectors();
+  const actorsData = await getActors();
+  const ratingData = await getRating();
+
+  const movieData = await getMovie();
+  
+  // Rest of the code for data insertion into the database
 }
-
-
-
-getMovie()
-module.exports = {writeDataToDb}
+  
+  module.exports = { writeDataToDb };

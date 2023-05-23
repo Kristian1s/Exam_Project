@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false
     });
     Genre.associate = function(models) {
-        Genre.hasMany(models.Movie);
+        Genre.belongsToMany(models.Movie, { through: 'MovieGenre',timestamps: false} );
       
     };
     return Genre
