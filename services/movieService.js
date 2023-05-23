@@ -2,7 +2,9 @@ class MovieService{
     constructor(db){
         this.client = db.sequelize; 
         this.user = db.user;
-        this.Movie = db.Movie
+        this.Movie = db.Movie;
+        this.Actor = db.Actor;
+        this.MovieActor = db.MovieActor;
     }
     async getAll() {
         return this.Movie.findAll({});
@@ -21,7 +23,11 @@ class MovieService{
         return this.Movie.findOne({
           where: {
             Title: movie
-          }
+          },
+          include: [
+            {model: this.Actor,
+            through: this.MovieActor}
+          ]
         });
       }
     }

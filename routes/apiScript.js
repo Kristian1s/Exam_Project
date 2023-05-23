@@ -77,11 +77,20 @@ router.post('/genre', async function(req, res, next) {
   });
 
   router.post('/movie', async function(req, res, next) {
-    let {Title, Plot, Runtime, Poster} = req.body;
+    let {Title, Plot, Runtime, Poster, Director, Genre, Year, Rating} = req.body;
     const movieExists = await movieService.find(Title);
-  
+    const directorKey = await directorService.find(Director);
+    const yearKey = await yearService.find(Year);
+    const ratingKey = await ratingService.find(Rating);
+    const genreIDs = [];
+    for (const genre of Genre) {
+      const foundGenre = await genreService.find(genre);
+      if (foundGenre) {
+        genreIDs.push(foundGenre.id);
+      }
+    }
     if (!movieExists) {
-      await movieService.create(Title, Plot, Runtime, Poster);
+      await movieService.create(Title, Plot, Runtime, Poster, directorKey.id, yearKey.id, ratingKey.id);
       res.sendStatus(200); 
     } else {
       res.sendStatus(204);

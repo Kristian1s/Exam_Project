@@ -11,17 +11,38 @@
 
     <div class="data2"></div>
     <table>
-    <% if (movies && movies.length) { %>
-      <% movies.forEach(function(movie) { %>
-        <% if (movie) { %>
-          <p><%= movie.Title %></p>
-        <% } else { %>
-          <h2>Movie Title Not Available</h2>
-        <% } %>
-      <% }); %>
-    <% } else { %>
-      <h2>No movies available</h2>
-    <% } %>
-  </table>
+      <% if (movies && movies.length) { %>
+        <% movies.forEach(function(movie) { %>
+          <% if (movie) { %>
+            <tr>
+              <td>
+                <div class="card">
+                  <div class="poster">
+                    <img src="<%= movie.Poster %>" alt="Movie Poster">
+                  </div>
+                  <div class="details">
+                    <h2 class="title"><%= movie.Title %></h2>
+                    <p class="genres">Genres: <%= movie.Genres.join(', ') %></p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% } else { %>
+            <tr>
+              <td>
+                <h2>Movie Title Not Available</h2>
+              </td>
+            </tr>
+          <% } %>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td>
+            <h2>No movies available</h2>
+          </td>
+        </tr>
+      <% } %>
+    </table>
+    
   </body>
   </html>

@@ -1,0 +1,47 @@
+  <div class="card">
+    <div class="poster">
+      <img src="C:\Users\krist\.vscode\MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_.jpg" alt="Movie Poster">
+    </div>
+    <div class="details">
+      <h2 class="title">
+        Movie Title <span class="release-year">(2004)</span>
+      </h2>
+      <p class="genres">Genres: Action, Drama, Thriller</p>
+    </div>
+    
+
+
+    .card {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .poster {
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .poster img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .details {
+    flex-grow: 1;
+  }
+  
+  .title {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .genres {
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  .release-year {
+    font-size: 14px;
+    color: #888;
+  }
