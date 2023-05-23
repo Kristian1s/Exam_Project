@@ -9,6 +9,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var top100Router = require('./routes/top100');
 var apiScriptRouter = require('./routes/apiScript')
+
+
 var db = require("./models");
 db.sequelize.sync({ force: false })
 
