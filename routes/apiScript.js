@@ -11,7 +11,8 @@ var MovieService = require('../services/movieService');
 var movieService = new MovieService(db);
 var ActorService = require('../services/actorService');
 var actorService = new ActorService(db);
-
+var RatingService = require('../services/ratingService');
+var ratingService = new RatingService(db);
 
 router.post('/genre', async function(req, res, next) {
     let genre = req.body.genreName;
@@ -31,6 +32,18 @@ router.post('/genre', async function(req, res, next) {
   
     if (!yearExists) {
       await yearService.create(year);
+      res.sendStatus(200); 
+    } else {
+      res.sendStatus(204);
+    }
+  });
+
+  router.post('/rating', async function(req, res, next) {
+    let rating = req.body.Rating;
+    const ratingExists = await ratingService.find(rating);
+  
+    if (!ratingExists) {
+      await ratingService.create(rating);
       res.sendStatus(200); 
     } else {
       res.sendStatus(204);
@@ -64,11 +77,11 @@ router.post('/genre', async function(req, res, next) {
   });
 
   router.post('/movie', async function(req, res, next) {
-    let {Title, Plot, Runtime, Poster, Rating} = req.body;
+    let {Title, Plot, Runtime, Poster} = req.body;
     const movieExists = await movieService.find(Title);
   
     if (!movieExists) {
-      await movieService.create(Title, Plot, Runtime, Poster, Rating);
+      await movieService.create(Title, Plot, Runtime, Poster);
       res.sendStatus(200); 
     } else {
       res.sendStatus(204);

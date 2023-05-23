@@ -8,13 +8,12 @@ class MovieService{
         return this.Movie.findAll({});
       }
     
-      async create(Title, Plot, Runtime, Poster, Rating) {
+      async create(Title, Plot, Runtime, Poster) {
         return this.Movie.create({
             Title: Title,
             Plot: Plot,
             Runtime: Runtime,
             Poster: Poster,
-            Rating: Rating
         });
       }
     

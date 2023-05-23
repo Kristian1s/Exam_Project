@@ -4,7 +4,6 @@ module.exports = (sequelize, Sequelize) => {
         Plot: Sequelize.DataTypes.STRING,
         Runtime: Sequelize.DataTypes.INTEGER,
         Poster: Sequelize.DataTypes.STRING,
-        Rating: Sequelize.DataTypes.FLOAT,
     },{
         timestamps: false
     });
@@ -12,7 +11,9 @@ module.exports = (sequelize, Sequelize) => {
        Movie.belongsTo(models.Director);
        Movie.belongsToMany(models.Actor, { through: 'MovieActor',timestamps: false} );
        Movie.belongsTo(models.Genre); 
-       Movie.hasMany(models.Watchlist); 
+       Movie.hasMany(models.Watchlist);
+       Movie.belongsTo(models.Year);
+       Movie.belongsTo(models.Rating);
     };
     return Movie
 }   

@@ -8,19 +8,17 @@ movieDetails.forEach(function (movie) {
     const plot = movie.Plot;
     const runtime = movie.Runtime.slice(0, -4)
     const poster = movie.Poster;
-    const rating = movie.imdbRating;
     movieArray.push({
         title: title,
         plot: plot,
         runtime: runtime,
-        poster: poster,
-        rating: rating
+        poster: poster
     })
   }
 );
 
 movieArray.forEach(function (movie) {
-    const { title, plot, runtime, poster, rating } = movie;
+    const { title, plot, runtime, poster} = movie;
   fetch("http://localhost:3000/apiScript/movie", {
     method: "POST",
     headers: {
@@ -31,7 +29,6 @@ movieArray.forEach(function (movie) {
         Plot: plot,
         Runtime: runtime,
         Poster: poster,
-        Rating: rating
     }),
   })
     .then(response => {

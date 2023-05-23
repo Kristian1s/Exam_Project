@@ -1,19 +1,24 @@
 const { getActors } = require("./Actors")
 const { getDirectors } = require("./Directors")
 const { getGenres } = require("./Genres")
-const { getMovie } = require("./Movie")
+const { getRating } = require("./Rating")
 const { getYears } = require("./Years")
+const { getMovie } = require("./Movie")
 
 
 
-
-function writeDataToDb(){
+async function writeDataToDb(){
+const promise = new Promise((resolve, reject) =>{
+    
+})
 getGenres()
 getYears()
 getDirectors()
 getActors()
-getMovie()
+getRating()
 }
 
 
+
+getMovie()
 module.exports = {writeDataToDb}
