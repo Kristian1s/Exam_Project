@@ -3,9 +3,12 @@ class ActorService{
         this.client = db.sequelize; 
         this.user = db.user;
         this.Actor = db.Actor;
+        this.MovieActor = db.MovieActor;
     }
     async getAll() {
-        return this.Actor.findAll({});
+        return this.Actor.findAll({
+
+        });
       }
     
       async create(name) {
@@ -20,6 +23,21 @@ class ActorService{
             Name: name
           }
         });
+      }
+
+      async insertMovieActor(actorId, movieId){
+        return this.MovieActor.create({
+          ActorId: actorId,
+          MovieId: movieId
+        })
+      }
+
+      async findInstance(movieId){
+        return this.MovieActor.findOne({
+          where: {
+            MovieId: movieId
+          }
+        })
       }
     }
     

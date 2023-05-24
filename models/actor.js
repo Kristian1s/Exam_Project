@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false
     });
     Actor.associate = function(models) {
-        Actor.belongsToMany(models.Movie , { through: 'MovieActor',timestamps: false} );
+        Actor.belongsToMany(models.Movie, { through: models.MovieActor ,timestamps: false} );
        
     };
     return Actor

@@ -7,20 +7,24 @@ class MovieService{
         this.MovieActor = db.MovieActor;
         this.Genre = db.Genre;
         this.MovieGenre = db.MovieGenre;
+        
     }
     async getAll() {
         return this.Movie.findAll({
+          where:{},
           include: [
-            {model: this.Actor,
-            through: this.MovieActor},
-
-            {model: this.Genre,
-            through: this.MovieGenre}
+            {
+              model: this.Actor,
+            through: this.MovieActor
+          },{
+              model: this.Genre,
+            through: this.MovieGenre
+          }
           ]
         });
       }
     
-      async create(Title, Plot, Runtime, Poster, directorId, yearId, ratingId, genreIDs) {
+      async create(Title, Plot, Runtime, Poster, directorId, yearId, ratingId) {
         return this.Movie.create({
             Title: Title,
             Plot: Plot,
@@ -29,11 +33,17 @@ class MovieService{
             DirectorId: directorId,
             YearId: yearId,
             RatingId: ratingId,
-            GenreIds: genreIDs
 
         });
       }
-    
+      async findOne(movie) {
+        return this.Movie.findOne({
+          where: {
+            Title: movie
+          }
+        })
+      }
+
       async find(movie) {
         return this.Movie.findOne({
           where: {
@@ -48,6 +58,8 @@ class MovieService{
           ]
         });
       }
+
+
     }
     
 module.exports = MovieService;

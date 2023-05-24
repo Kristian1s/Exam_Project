@@ -5,15 +5,12 @@ let ratingArray = [];
 let movieDetails = await GetMovieDetails();
 movieDetails.forEach(function (movie) {
   if (movie.imdbRating) {
-    // Check if Genre property exists
-    const ratings = movie.imdbRating.split(",");
-    ratings.forEach(function (rating) {
-      const trimmedRating = rating.trim();
+    const ratings = movie.imdbRating;
 
-      if (!ratingArray.includes(trimmedRating)) {
-        ratingArray.push(trimmedRating);
-      }
-    });
+
+    if (!ratingArray.includes(ratings)) {
+      ratingArray.push(ratings);
+    }
   }
 });
 

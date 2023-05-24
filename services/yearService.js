@@ -2,7 +2,7 @@ class YearService{
     constructor(db){
         this.client = db.sequelize; 
         this.user = db.user;
-        this.Year = db.Year
+        this.Year = db.Year;
     }
     async getAll() {
         return this.Year.findAll({});

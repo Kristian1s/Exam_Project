@@ -8,16 +8,7 @@ movieDetails.forEach(function (movie) {
     const plot = movie.Plot;
     const runtime = movie.Runtime.slice(0, -4)
     const poster = movie.Poster;
-    const director = movie.Director;
-
-    let genreArray =[];
-    const genresToSplit = movie.Genre.split(",");
-    genresToSplit.forEach(function (genre) {
-      const trimmedGenre = genre.trim();
-      genreArray.push(trimmedGenre);
-    });
-    const genre= genreArray;
-
+    const director = movie.Director.split(",")[0].trim();
     const year = movie.Year;
     const rating = movie.imdbRating;
     movieArray.push({
@@ -26,7 +17,6 @@ movieDetails.forEach(function (movie) {
         runtime: runtime,
         poster: poster,
         director: director,
-        genre: genre,
         year: year,
         rating: rating
     })
@@ -34,7 +24,7 @@ movieDetails.forEach(function (movie) {
 );
 
 movieArray.forEach(function (movie) {
-    const { title, plot, runtime, poster, director, genre, year, rating} = movie;
+    const { title, plot, runtime, poster, director, year, rating} = movie;
   fetch("http://localhost:3000/apiScript/movie", {
     method: "POST",
     headers: {
@@ -46,7 +36,6 @@ movieArray.forEach(function (movie) {
         Runtime: runtime,
         Poster: poster,
         Director: director,
-        Genre: genre,
         Year: year,
         Rating: rating
     }),

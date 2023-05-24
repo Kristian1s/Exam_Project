@@ -2,7 +2,8 @@ class GenreService{
     constructor(db){
         this.client = db.sequelize; 
         this.user = db.user;
-        this.Genre = db.Genre
+        this.Genre = db.Genre;
+        this.MovieGenre = db.MovieGenre;
     }
     async getAll() {
         return this.Genre.findAll({});
@@ -19,6 +20,14 @@ class GenreService{
           where: {
             Name: genre
           }
+        });
+      }
+    
+      async insertMovieGenre(genreId, movieId){
+        return this.MovieGenre.create({
+            GenreId: genreId,
+            MovieId: movieId
+          
         });
       }
     }

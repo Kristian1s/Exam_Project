@@ -4,7 +4,7 @@ const { getGenres } = require("./Genres")
 const { getRating } = require("./Rating")
 const { getYears } = require("./Years")
 const { getMovie } = require("./Movie")
-
+const {movieActors} = require("./MovieActors")
 
 
 async function writeDataToDb() {
@@ -16,6 +16,7 @@ async function writeDataToDb() {
 
   const movieData = await getMovie();
   
+  const movieactorsData = await movieActors();
   // Rest of the code for data insertion into the database
 }
   

@@ -5,16 +5,12 @@ let yearsArray = [];
 let movieDetails = await GetMovieDetails();
 movieDetails.forEach(function (movie) {
   if (movie.Year) {
-    // Check if Genre property exists
-    const years = movie.Year.split(",");
+    const years = movie.Year;
 
-    years.forEach(function (year) {
-      const trimmedYear = year.trim();
-
-      if (!yearsArray.includes(trimmedYear)) {
-        yearsArray.push(trimmedYear);
+      if (!yearsArray.includes(years)) {
+        yearsArray.push(years);
       }
-    });
+   
   }
 });
 
