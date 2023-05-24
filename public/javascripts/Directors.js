@@ -26,7 +26,7 @@ directorArray.forEach(function (director) {
       Name: director
     }),
 })
-.then(response => {
+/* .then(response => {
   if (response.ok) {
     console.log(`Director '${director}' sent successfully.`);
   } else {
@@ -35,6 +35,6 @@ directorArray.forEach(function (director) {
 })
 .catch(error => {
   console.error(`Error sending director '${director}':`, error);
-});
+}); */
 });}
 module.exports = {getDirectors}

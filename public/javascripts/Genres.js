@@ -28,7 +28,7 @@ genreArray.forEach(function (genre) {
       genreName: genre,
     }),
   })
-    .then(response => {
+   /*  .then(response => {
       if (response.ok) {
         console.log(`Genre '${genre}' sent successfully.`);
       } else {
@@ -37,6 +37,6 @@ genreArray.forEach(function (genre) {
     })
     .catch(error => {
       console.error(`Error sending genre '${genre}':`, error);
-    });
+    }); */
 });}
 module.exports = {getGenres}

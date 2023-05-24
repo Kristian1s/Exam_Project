@@ -1,33 +1,33 @@
 const { GetMovieDetails } = require("./GetMovieDetails.js");
 
-async function movieActors() {
-  let movieActors = [];
+async function movieGenres() {
+  let movieGenres = [];
   let movieDetails = await GetMovieDetails();
   movieDetails.forEach(function (movie) {
     const title = movie.Title;
-    const actors = movie.Actors.split(",");
-    const trimmedActors = actors.map(actor => actor.trim());
-    movieActors.push({
+    const genres = movie.Genre.split(",");
+    const trimmedGenres = genres.map(genre => genre.trim());
+    movieGenres.push({
       title: title,
-      actors: trimmedActors,
+      genres: trimmedGenres,
       
     })
   }
 );
 
-movieActors.forEach(function (movie) {
-    const { title, actors} = movie;
-  fetch("http://localhost:3000/apiScript/movieActors", {
+movieGenres.forEach(function (movie) {
+    const { title, genres} = movie;
+  fetch("http://localhost:3000/apiScript/movieGenres", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
     body: JSON.stringify({
         Title: title,
-        Actors: actors
+        Genres: genres
     }),
   })
-    /* .then(response => {
+   /*  .then(response => {
       if (response.ok) {
         console.log(`Data sent`);
       } else {
@@ -38,4 +38,4 @@ movieActors.forEach(function (movie) {
       console.error("Error sending data");
     }); */
 });}
-module.exports = { movieActors };
+module.exports = { movieGenres };

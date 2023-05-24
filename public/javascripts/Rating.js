@@ -24,7 +24,7 @@ ratingArray.forEach(function (rating) {
       Rating: rating,
     }),
   })
-    .then(response => {
+    /* .then(response => {
       if (response.ok) {
         console.log(`Rating '${rating}' sent successfully.`);
       } else {
@@ -33,6 +33,6 @@ ratingArray.forEach(function (rating) {
     })
     .catch(error => {
       console.error(`Error sending rating '${rating}':`, error);
-    });
+    }); */
 });}
 module.exports = {getRating}

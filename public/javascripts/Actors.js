@@ -27,7 +27,7 @@ actorsArray.forEach(function (actor) {
       ActorName: actor,
     }),
   })
-    .then(response => {
+    /* .then(response => {
       if (response.ok) {
         console.log(`Actor '${actor}' sent successfully.`);
       } else {
@@ -36,6 +36,6 @@ actorsArray.forEach(function (actor) {
     })
     .catch(error => {
       console.error(`Error sending actor '${actor}':`, error);
-    });
+    }); */
 });}
 module.exports = {getActors}

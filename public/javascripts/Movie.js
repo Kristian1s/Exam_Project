@@ -40,7 +40,7 @@ movieArray.forEach(function (movie) {
         Rating: rating
     }),
   })
-    .then(response => {
+  /*   .then(response => {
       if (response.ok) {
         console.log(`Movie '${movie}' sent successfully.`);
       } else {
@@ -49,6 +49,6 @@ movieArray.forEach(function (movie) {
     })
     .catch(error => {
       console.error(`Error sending movie '${movie}':`, error);
-    });
+    }); */
 });}
 module.exports = {getMovie}

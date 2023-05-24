@@ -24,7 +24,7 @@ yearsArray.forEach(function (year) {
       Year: year,
     }),
   })
-    .then(response => {
+   /*  .then(response => {
       if (response.ok) {
         console.log(`Year '${year}' sent successfully.`);
       } else {
@@ -33,6 +33,6 @@ yearsArray.forEach(function (year) {
     })
     .catch(error => {
       console.error(`Error sending year '${year}':`, error);
-    });
+    }); */
 });}
 module.exports = {getYears}

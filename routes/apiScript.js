@@ -95,33 +95,36 @@ router.post("/movie", async function (req, res, next) {
 
 
 
-/* router.post("/movieGenres", async function (req, res, next) {
-  let name = req.body.ActorName;
-  const actorExists = await actorService.find(name);
 
-  if (!actorExists) {
-    await actorService.create(name);
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(204);
-  }
-}); */
 
 router.post("/movieActors", async function (req, res, next) {
   let {Actors,Title } = req.body;
-let movieFind = await movieService.findOne(Title);
-let checkForEntry = await actorService.findInstance(movieFind.id);
-console.log('checkForEntry :', checkForEntry);
-
-/* 
-   let checkForEntry = await actorService.findInstance(movieStringId);
-  if(!checkForEntry){
-  Actor.forEach(async function(actor){
-    let actorFind = await actorService.insertMovieActor(actor, movieFind.id);
+  let movieFind = await movieService.findOne(Title);
+  let checkForEntry = await actorService.findInstance(movieFind.id);
+    if(!checkForEntry){
+  Actors.forEach(async function(actor){
+    let actorFind = await actorService.find(actor);
+    let actorInsert = await actorService.insertMovieActor(actorFind.id, movieFind.id);
   })
   res.sendStatus(200);
 }else {
     res.sendStatus(204);
-  }    */
+  }    
+});
+
+
+router.post("/movieGenres", async function (req, res, next) {
+  let {Genres ,Title } = req.body;
+  let movieFind = await movieService.findOne(Title);
+  let checkForEntry = await genreService.findInstance(movieFind.id);
+    if(!checkForEntry){
+  Genres.forEach(async function(genre){
+    let genreFind = await genreService.find(genre);
+    let genreInsert = await genreService.insertMovieGenre(genreFind.id, movieFind.id);
+  })
+  res.sendStatus(200);
+}else {
+    res.sendStatus(204);
+  }    
 });
 module.exports = router;
