@@ -1,5 +1,6 @@
 body {
   padding: 0px;
+  padding-top: 5.2rem;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: grey;
 }
@@ -8,13 +9,17 @@ body {
   margin: 0 auto;
   padding: 20px;
   max-width: 800px;
+  border-style: solid;
+  border-color: black;
 }
 .wrapper{
-  background-color: #D3D3D3
+  background-color: #D3D3D3;
+  border-style: solid;
+  border-color: black;
 }
 
 .content {
-  background-color: blue;
+  background-color: #D3D3D3;
   padding: 20px;
 }
 
@@ -65,4 +70,18 @@ body {
   flex-direction: column;
   align-items: flex-end;
   flex-grow: 1;
+}
+
+.navbar-brand
+{
+    position: relative;
+    width: 170px;
+    left: 15px;
+    max-height: 70px; /* height of the navbar */
+}
+
+
+
+.navbar-nav .nav-link {
+  font-size: 24px;
 }
