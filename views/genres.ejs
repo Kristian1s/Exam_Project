@@ -8,17 +8,21 @@
   </head>
   <body>
     
-    <div class="header">
-      
-        <div class="header-text"><p><%=title%></p></div>
         <%- include('./partials/navbar.ejs')%>
-      </div>
- 
-
-    <div class="wrapper">
-        <div class="login">
+        <div class="wrapper">
+          <div class="middle">
+            <div class="description">
+              <h2>Genres</h2>
+              <br>
             </div>
-
-    </div>
+            <div>
+              <%Genres.forEach(function(genre){%>
+                <h4><%=genre.Name%></h4>
+             <% })%>
+            </div>
+        
+          
+          </div>
+        </div>
   </body>
   </html>
