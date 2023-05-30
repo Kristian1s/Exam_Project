@@ -7,7 +7,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var top100Router = require('./routes/top100');
+var topRatedRouter = require('./routes/topRated');
 var apiScriptRouter = require('./routes/apiScript')
 var genreRouter = require('./routes/genre');
 var profileRouter = require('./routes/profile');
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/top100', top100Router);
+app.use('/topRated', topRatedRouter);
 app.use('/apiScript', apiScriptRouter)
 app.use('/genre', genreRouter)
 app.use('/profile', profileRouter) 
