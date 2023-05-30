@@ -15,102 +15,114 @@ var RatingService = require("../services/ratingService");
 var ratingService = new RatingService(db);
 
 router.post("/genre", async function (req, res, next) {
-  let genre = req.body.genreName;
-  const genreExists = await genreService.find(genre);
+  let genreArray = req.body.GenreArray;
 
-  if (!genreExists) {
-    await genreService.create(genre);
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(204);
+  for (const genre of genreArray) {
+    const genreExists = await genreService.find(genre);
+
+    if (!genreExists) {
+      await genreService.create(genre);
+    }
   }
+  res.sendStatus(200);
 });
 
 router.post("/year", async function (req, res, next) {
-  let year = req.body.Year;
-  const yearExists = await yearService.find(year);
+  let yearsArray = req.body.YearsArray;
+  for (const year of yearsArray) {
+    const yearExists = await yearService.find(year);
 
-  if (!yearExists) {
-    await yearService.create(year);
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(204);
+    if (!yearExists) {
+      await yearService.create(year);
+    }
   }
+
+  res.sendStatus(200);
 });
 
 router.post("/rating", async function (req, res, next) {
-  let rating = parseFloat(req.body.Rating);
-  //Issues with finding float, focus on first decimal
-  const roundedRating = parseFloat(rating.toFixed(1));
-  const ratingExists = await ratingService.findStartsWith(roundedRating);
-  if (ratingExists) {
-    res.sendStatus(204);
-  } else {
-    await ratingService.create(roundedRating);
-    res.sendStatus(200);
-  }
-});
-
-router.post("/director", async function (req, res, next) {
-  let director = req.body.Name;
-  const directorExists = await directorService.find(director);
-
-  if (!directorExists) {
-    await directorService.create(director);
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(204);
-  }
-});
-
-router.post("/actor", async function (req, res, next) {
-  let name = req.body.ActorName;
-  const actorExists = await actorService.find(name);
-
-  if (!actorExists) {
-    await actorService.create(name);
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(204);
-  }
-});
-
-router.post("/movie", async function (req, res, next) {
-  let { Title, Plot, Runtime, Poster, Director, Year, Rating } =req.body;
-  let rating = parseFloat(Rating);
-  const movieExists = await movieService.findOne(Title);
-
-  if (!movieExists) {
-    const directorSearch = await directorService.find(Director);
-    const yearKey = await yearService.find(Year);
+  let ratingsArray = req.body.RatingsArray;
+  for (const rating of ratingsArray) {
     const roundedRating = parseFloat(rating.toFixed(1));
     const ratingExists = await ratingService.findStartsWith(roundedRating);
 
-    await movieService.create(Title,Plot,Runtime,Poster,directorSearch.id,yearKey.id,ratingExists.id);
-    res.sendStatus(200);
-    } else {
-      res.sendStatus(204);
-    } 
+    if (!ratingExists) {
+      await ratingService.create(roundedRating);
+    }
+  }
+
+  res.sendStatus(200);
 });
 
+router.post("/director", async function (req, res, next) {
+  let directorArray = req.body.DirectorArray;
+  for (const director of directorArray) {
+    const directorExists = await directorService.find(director);
+    if (!directorExists) {
+     await directorService.create(director);
+    }
+  }
 
+  res.sendStatus(200);
+});
 
+router.post("/actor", async function (req, res, next) {
+  let actorsArray = req.body.ActorsArray;
+  for (const actor of actorsArray) {
+    const actorExists = await actorService.find(actor);
 
+    if (!actorExists) {
+      await actorService.create(actor);
+    }
+  }
+
+  res.sendStatus(200);
+});
+
+router.post("/movie", async function (req, res, next) {
+  let movieArray = req.body.MovieArray
+  for (const movie of movieArray) {
+    const movieExists = await movieService.findOne(movie.title);
+    console.log("DIRRRRRRRRRRRRRRRR" +movie.director)
+    if (!movieExists) {
+      const directorSearch = await directorService.find(movie.director);
+      const directorId = directorSearch.dataValues.id;
+      const yearKey = await yearService.find(movie.year);
+      const roundedRating = parseFloat(movie.rating.toFixed(1));
+
+      const ratingExists = await ratingService.findStartsWith(roundedRating);
+      await movieService.create(movie.title,movie.plot,movie.runtime,movie.poster,directorId,yearKey.id,ratingExists.id);
+    }
+  }
+
+  res.sendStatus(200);
+});
 
 router.post("/movieActors", async function (req, res, next) {
-  let {Actors,Title } = req.body;
-  let movieFind = await movieService.findOne(Title);
-  let checkForEntry = await actorService.findInstance(movieFind.id);
-    if(!checkForEntry){
-  Actors.forEach(async function(actor){
-    let actorFind = await actorService.find(actor);
-    let actorInsert = await actorService.insertMovieActor(actorFind.id, movieFind.id);
-  })
-  res.sendStatus(200);
-}else {
-    res.sendStatus(204);
-  }    
+  let movieActorsArray = req.body.MovieActorArray;
+
+  for (const movie of movieActorsArray) {
+    const title = movie.title;
+    const actors = movie.actors;
+    const movieFind = await movieService.findOne(title);
+    console.log('movieFind :', movieFind);
+    
+    for (const actor of actors) {
+      const findActor = await actorService.find(actor);
+      const actorId = findActor.id;
+      const movieId = movieFind.id;
+
+      const checkForExistence = await actorService.existingRelationship(actorId, movieId);
+      if (!checkForExistence) {
+        await actorService.insertMovieActor(actorId, movieId);
+      }
+    }
+  }
+  
+  res.sendStatus(204);
 });
+
+
 
 
 router.post("/movieGenres", async function (req, res, next) {

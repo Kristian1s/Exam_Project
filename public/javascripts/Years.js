@@ -14,25 +14,15 @@ movieDetails.forEach(function (movie) {
   }
 });
 
-yearsArray.forEach(function (year) {
+
   fetch("http://localhost:3000/apiScript/year", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
     body: JSON.stringify({
-      Year: year,
+      YearsArray: yearsArray,
     }),
   })
-   /*  .then(response => {
-      if (response.ok) {
-        console.log(`Year '${year}' sent successfully.`);
-      } else {
-        console.error(`Error sending year '${year}'. Status: ${response.status}`);
-      }
-    })
-    .catch(error => {
-      console.error(`Error sending year '${year}':`, error);
-    }); */
-});}
+}
 module.exports = {getYears}

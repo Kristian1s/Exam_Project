@@ -32,13 +32,15 @@ class ActorService{
         })
       }
 
-      async findInstance(movieId){
+      async existingRelationship(actorId, movieId){
         return this.MovieActor.findOne({
           where: {
+            ActorId: actorId,
             MovieId: movieId
           }
         })
       }
+    
     }
     
 module.exports = ActorService;

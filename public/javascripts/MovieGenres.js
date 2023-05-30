@@ -27,15 +27,5 @@ movieGenres.forEach(function (movie) {
         Genres: genres
     }),
   })
-   /*  .then(response => {
-      if (response.ok) {
-        console.log(`Data sent`);
-      } else {
-        console.error(`Error sending data`);
-      }
-    })
-    .catch(error => {
-      console.error("Error sending data");
-    }); */
 });}
 module.exports = { movieGenres };

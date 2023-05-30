@@ -1,26 +1,56 @@
-var { GetTop100Titles } = require("./GetTop100Titles.js");
+const { getTop100Titles, getAdditionalMovies } = require("./GetMoviesFromApis.js");
 
 async function GetMovieDetails() {
-  const movies = await GetTop100Titles();
+  const movies = await getTop100Titles();
+  const additionalMovies = await getAdditionalMovies();
   const movieDetails = []; // Array to store movie details
 
-  // Iterate through each movie and fetch its details
-  await Promise.all(
-    movies.map(async (movie) => {
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=dda73268&t=${encodeURIComponent(
-          movie.title
-        )}`
-      );
-      const data = await response.json();
-      movieDetails.push(data);
-    })
-  );
+  try {
+    // Fetch details for top 100 movies
+    await Promise.all(
+      movies.map(async (movie) => {
+        try {
+          const response = await fetch(
+            `https://www.omdbapi.com/?apikey=dda73268&t=${encodeURIComponent(
+              movie.title
+            )}`
+          );
+          const data = await response.json();
+          movieDetails.push(data);
+        } catch (error) {
+          console.error(`Error fetching details for movie: ${movie.title}`, error);
+        }
+      })
+    );
 
-  const sortedMovies = movieDetails.sort(
-    (a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)
-  );
+    // Fetch details for additional movies
+    await Promise.all(
+      additionalMovies.map(async (movie) => {
+        try {
+          const response = await fetch(
+            `https://www.omdbapi.com/?apikey=dda73268&t=${encodeURIComponent(
+              movie.title
+            )}`
+          );
+          const data = await response.json();
 
-  return sortedMovies;
+          movieDetails.push(data);
+        } catch (error) {
+          console.error(`Error fetching details for additional movie: ${movie.title}`, error);
+        }
+      })
+    );
+
+    const sortedMovies = movieDetails.sort(
+      (a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)
+    );
+    console.log('sortedMovies sent:', sortedMovies.length);
+    return sortedMovies;
+    
+  } catch (error) {
+    console.error('Error occurred while fetching movie details:', error);
+    return []; // Return an empty array if an error occurs
+  }
 }
+
 module.exports = { GetMovieDetails };

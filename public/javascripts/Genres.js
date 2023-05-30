@@ -17,26 +17,14 @@ movieDetails.forEach(function (movie) {
     });
   }
 });
-
-genreArray.forEach(function (genre) {
   fetch("http://localhost:3000/apiScript/genre", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
     body: JSON.stringify({
-      genreName: genre,
+      GenreArray: genreArray,
     }),
   })
-   /*  .then(response => {
-      if (response.ok) {
-        console.log(`Genre '${genre}' sent successfully.`);
-      } else {
-        console.error(`Error sending genre '${genre}'. Status: ${response.status}`);
-      }
-    })
-    .catch(error => {
-      console.error(`Error sending genre '${genre}':`, error);
-    }); */
-});}
+}
 module.exports = {getGenres}
