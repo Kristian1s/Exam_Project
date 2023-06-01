@@ -1,0 +1,41 @@
+#app {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  #left {
+    width: 25%;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+  }
+  
+  #middle {
+    width: 45%;
+  }
+  
+  #carusel {
+    height: 70%;
+    background-color: white;
+  }
+  #right {
+    width: 30%;
+    background-color: gray;
+  }
+  
+  #rightTop{
+    height: 35%;
+    background-color: #212529;
+  }
+  
+  #rightBot{
+    height: 65%;
+    background-color: rgb(191, 184, 184);
+  }
+  #info{
+    height: 30%;
+    background-color: black;
+  }
+  
+  

@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const Rating = sequelize.define('Rating', {
-        Rating: Sequelize.DataTypes.FLOAT
+        Rating: Sequelize.DataTypes.DECIMAL(10,1)
     },{
         timestamps: false
     });

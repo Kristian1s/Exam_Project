@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/footer.css'/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    
+        <%- include('./partials/navbar.ejs')%>
+        <div class="wrapperMovie">
+          <div class="middle">
+            <div class="movie-details">
+              <div class="posterMovie">
+                <img src="<%= Movie.Poster %>">
+              </div>
+              <div class="info">
+                <div class="contentMovie">
+                  <h1 class="title"><%= Movie.Title %></h1>
+                  <p class="plot"><%= Movie.Plot %></p>
+                  <div class="details">
+                    <div class="detail">
+                      <span class="label">Runtime:</span>
+                      <span class="value"><%= Movie.Runtime %></span>
+                    </div>
+                    <div class="detail">
+                      <span class="label">Director:</span>
+                      <span class="value"><%= Movie.Director.Name %></span>
+                    </div>
+                    <div class="detail">
+                      <span class="label">Year:</span>
+                      <span class="value"><%= Movie.Year.Year %></span>
+                    </div>
+                    <div class="detail">
+                      <span class="label">Rating:</span>
+                      <span class="value"><%= Movie.Rating.Rating %></span>
+                    </div>
+                  </div>
+                  <div class="actors">
+                    <h2>Actors:</h2>
+                    <ul>
+                      <% Movie.Actors.forEach(function(actor){ %>
+                        <li><%= actor.Name %></li>
+                      <% }) %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('./partials/footer.ejs')%>
+  </body>
+  </html>

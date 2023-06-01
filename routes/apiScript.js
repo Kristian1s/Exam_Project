@@ -43,11 +43,10 @@ router.post("/year", async function (req, res, next) {
 router.post("/rating", async function (req, res, next) {
   let ratingsArray = req.body.RatingsArray;
   for (const rating of ratingsArray) {
-    const roundedRating = parseFloat(rating.toFixed(1));
-    const ratingExists = await ratingService.findStartsWith(roundedRating);
+    const ratingExists = await ratingService.find(rating);
 
     if (!ratingExists) {
-      await ratingService.create(roundedRating);
+      await ratingService.create(rating);
     }
   }
 
@@ -87,9 +86,9 @@ router.post("/movie", async function (req, res, next) {
       const directorSearch = await directorService.find(movie.director);
       const directorId = directorSearch.dataValues.id;
       const yearKey = await yearService.find(movie.year);
-      const roundedRating = parseFloat(movie.rating.toFixed(1));
+      const rating = movie.rating;
 
-      const ratingExists = await ratingService.findStartsWith(roundedRating);
+      const ratingExists = await ratingService.find(rating);
       await movieService.create(movie.title,movie.plot,movie.runtime,movie.poster,directorId,yearKey.id,ratingExists.id);
     }
   }
@@ -125,7 +124,6 @@ router.post("/movieActors", async function (req, res, next) {
 
 router.post("/movieGenres", async function (req, res, next) {
   let movieGenres = req.body.MovieGenres;
-  console.log('movieGenres :', movieGenres);
   for(const movie of movieGenres){
     const title = movie.title;
     const genres = movie.genres;

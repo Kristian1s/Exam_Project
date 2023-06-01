@@ -6,19 +6,25 @@ body {
 }
 
 .middle {
+ 
   margin: 0 auto;
   padding: 20px;
   max-width: 800px;
-  border-style: solid;
-  border-color: black;
-}
-.wrapper{
-  background-color: #D3D3D3;
-}
 
+
+}
+.topRatedWrapper {
+  background: linear-gradient(to bottom, #6c6b6b, #D3D3D3, #6c6b6b);
+}
+.wrapperMovie{
+  height: 100vh;
+  background: linear-gradient(to bottom, #6c6b6b, #D3D3D3, #6c6b6b);
+}
 .content {
   background-color: #D3D3D3;
   padding: 20px;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
 }
 
 .table {
@@ -53,10 +59,21 @@ body {
   font-size: 100px; 
   text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
+a:link {
+  color: #212529;
+  background-color: transparent;
+  text-decoration: underline;
+}
 
+a:visited {
+  color: #212529;
+  background-color: transparent;
+  text-decoration: underline;
+}
 .card {
   display: flex;
   align-items: flex-start;
+  padding: 0.7rem;
 }
 
 .poster {
@@ -83,3 +100,41 @@ body {
 .navbar-nav .nav-link {
   font-size: 24px;
 }
+
+
+.rating{
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  margin: 0;
+  padding: 5px;
+}
+
+.icon-yellow {
+  color: #FFC502;
+  font-size: 20px;
+}
+
+
+.wrapperMovie {
+  display: flex;
+}
+
+.posterMovie {
+  float: left;
+  margin-right: 20px;
+}
+
+.info {
+  flex: 1;
+}
+
+.contentMovie {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+

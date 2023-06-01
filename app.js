@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var topRatedRouter = require('./routes/topRated');
 var apiScriptRouter = require('./routes/apiScript')
 var genreRouter = require('./routes/genre');
+var movieRouter = require('./routes/movie');
 var profileRouter = require('./routes/profile');
 var db = require("./models");
 db.sequelize.sync({ force: false })
@@ -30,7 +31,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/topRated', topRatedRouter);
 app.use('/apiScript', apiScriptRouter)
-app.use('/genre', genreRouter)
+app.use('/genre', genreRouter);
+app.use('/movie', movieRouter);
 app.use('/profile', profileRouter) 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

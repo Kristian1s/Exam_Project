@@ -1,21 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var {writeDataToDb} = require('../public/javascripts/InsertDataToDb');
+var { writeDataToDb } = require('../public/javascripts/InsertDataToDb');
 
+let flag = true;
 
-let loadedMovies;
-router.get('/', async function(req, res, next) {
-  if (loadedMovies) {
-    res.render('index', { title: 'MovieDatabase' });
-res.end();
-  }else{
- try {
+router.get('/', async function (req, res, next) {
+  if (flag) {
     await writeDataToDb();
+    flag = false;
     res.render('index', { title: 'MovieDatabase' });
-  } catch (error) {
-    console.error('Error writing data to the database:', error);
-   
-  }}
+  } else {
+    res.render('index', { title: 'MovieDatabase' });
+  }
 });
 
 module.exports = router;

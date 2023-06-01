@@ -1,4 +1,3 @@
-const { Op } = require("sequelize");
 class RatingService{
     constructor(db){
         this.client = db.sequelize; 
@@ -18,20 +17,11 @@ class RatingService{
       async find(rating) {
         return this.Rating.findOne({
           where: {
-            Rating: rating
+            Rating: parseFloat(rating)
           }
         });
       }
 
-      async findStartsWith(rating) {
-        return this.Rating.findOne({
-          where: {
-            Rating: {
-              [Op.startsWith]: rating.toString()
-            }
-          }
-        });
-      }
     }
     
 module.exports = RatingService;

@@ -8,7 +8,6 @@ const {movieActors} = require("./MovieActors")
 const {movieGenres} = require("./MovieGenres")
 
 async function writeDataToDb() {
-
     const genresData = await getGenres();
     console.log('---Genres added to database---');
 
@@ -32,9 +31,6 @@ async function writeDataToDb() {
   
     const movieGenresData = await movieGenres();
     console.log('---Movie Genres added to database---');
-
-     
-    
 }
   
   module.exports = { writeDataToDb };

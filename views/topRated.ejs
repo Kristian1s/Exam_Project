@@ -4,50 +4,89 @@
     <meta charset="UTF-8">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/footer.css'/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
+    
   </head>
   <body>
     <%- include('./partials/navbar.ejs') %>
-<div class="wrapper">
+<div class="topRatedWrapper">
     <div class="middle">
       <div class="description">
-        <h2>Top Rated Movies</h2>
+        
       </div>
     <table>
       <div class="content">
+        <h2>Top Rated Movies</h2>
       <% if (Movies && Movies.length) { %>
-        <% Movies.forEach(function(movie) { %>
+        <% Movies.forEach(function(movie,index) { %>
+          
           <% if (movie) { %>
             <tr>
               <td>
-                <div class="card flex-row"><img class="card-img-left example-card-img-responsive" src="<%= movie.Poster %>" alt="Movie Poster" height="200px"/>
+                <div class="card flex-row" id="card<%=index%>">
+                  <img class="card-img-left example-card-img-responsive" src="<%= movie.Poster %>" alt="Movie Poster" height="200px"/>
                   <div class="card-body">
-                    <input id="ch" type="checkbox"
-                    <!-- TODO make sure movie.Year is broguht up -->
-                    <h2 class="card-title h5 h4-sm"><%= movie.Title %> <%=movie.Year%></h2>
-                    
-
+                    <input class="hideCheckbox" id="ch<%=index%>" type="checkbox">
+                    <!-- TODO make sure movie.Year is brought up -->
+                    <a href="/movie/<%= movie.Title %>"><h2 style="width:70%" class="card-title h5 h4-sm"><%= movie.Title %></a> (<%=movie.Year.Year %>)</h2>
+                      <p class="rating"><span class="bi bi-star icon-yellow"></span><%=movie.Rating.Rating%></p>
                     <!--GENRE INFO-->
-                    <div class="text">
-                    <p class="card-text">Genres:
-                      <% movie.Genres.forEach(function(genre, index) { %>
-                        <%= genre.Name %><% if (index !== movie.Genres.length - 1) { %>,<% } %>
-                      <% }); %></p>
-
-
-
+                    <div class="text" id="text<%=index%>">
+                      <p class="card-text"><strong>Genres:</strong>
+                        <% movie.Genres.forEach(function(genre, genreIndex) { %>
+                          <%= genre.Name %><% if (genreIndex !== movie.Genres.length - 1) { %>,<% } %>
+                        <% }); %>
+                      </p>
+      
                       <!--ACTOR INFO-->
-                      <p class="card-text">Actors:
-                        <% movie.Actors.forEach(function(actor, index) { %>
-                          <%= actor.Name %><% if (index !== movie.Actors.length - 1) { %>,<% } %>
-                        <% }); %></p>
+                      <p class="card-text"><strong>Actors:</strong>
+                        <% movie.Actors.forEach(function(actor, actorIndex) { %>
+                          <%= actor.Name %><% if (actorIndex !== movie.Actors.length - 1) { %>,<% } %>
+                        <% }); %>
+                      </p>
 
-                        <!--SHOW LESSS-->
-                        <label for="ch">Show less</label>
-                      </div>
-                      <label for="ch">Read more</label>
+                       <!--DIRECTOR INFO-->
+                       <p class="card-text"><strong>Director:</strong>
+                        <%= movie.Director.Name %>
+                      </p>
+                    </div>
+                    <style>
+                      .text {
+                        display: none;
+                      }
+                      .hideCheckbox{
+                        display: none;
+                      }
+                      #ch<%=index%>:checked ~ .text {
+                        display: inline-block;
+                      }
+                      #ch<%=index%>:checked ~ .detailButton {
+                        display: inline-block;
+                      }
+                      #ch<%=index%>:checked ~ .showDetails {
+                        display: none;
+                      }
+                      label {
+                        display: inline-block;
+                        cursor: pointer;
+                      }
+                      
+                      .detailButton {
+                        display: none;
+                        cursor: pointer;
+                      }
+                      </style>
+                    <!--SHOW LESSS-->
+                    <label class="showDetails" for="ch<%=index%>">Show details</label>
+                    <br>
+                    <label class="detailButton" for="ch<%=index%>">Show less</label>
+                    <!--SHOW MORE-->
+                    
                   </div>
+                  
                 </div>
               </td>
             </tr>
@@ -71,5 +110,6 @@
     </table>
   </div>
 </div>
+<%- include('./partials/footer.ejs')%>
   </body>
   </html>

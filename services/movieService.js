@@ -7,18 +7,26 @@ class MovieService{
         this.MovieActor = db.MovieActor;
         this.Genre = db.Genre;
         this.MovieGenre = db.MovieGenre;
-        
+        this.Director = db.Director;
+        this.Year = db.Year;
+        this.Rating =db.Rating;
     }
     async getAll() {
         return this.Movie.findAll({
           where:{},
           include: [
             {
+              model: this.Year
+            },{
               model: this.Actor,
             through: this.MovieActor
           },{
               model: this.Genre,
             through: this.MovieGenre
+          },{
+            model: this.Director,
+          },{
+            model: this.Rating
           }
           ]
         });
@@ -50,11 +58,19 @@ class MovieService{
             Title: movie
           },
           include: [
-            {model: this.Actor,
-            through: this.MovieActor},
-
-            {model: this.Genre,
-            through: this.MovieGenre}
+            {
+              model: this.Year
+            },{
+              model: this.Actor,
+            through: this.MovieActor
+          },{
+              model: this.Genre,
+            through: this.MovieGenre
+          },{
+            model: this.Director,
+          },{
+            model: this.Rating
+          }
           ]
         });
       }

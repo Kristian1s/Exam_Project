@@ -16,11 +16,16 @@ var ratingService = new RatingService(db);
 
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-     const movies = await movieService.getAll();
+router.get('/', function(req, res, next) {
+    res.render('movie', { title: 'MovieDatabase'});
+})
+
+router.get('/:title', async function(req, res, next) {
+  const title = req.params.title;
+     const movie = await movieService.find(title);
      
 
-    res.render('topRated', { title: 'MovieDatabase', Movies: movies });
+    res.render('movie', { title: 'MovieDatabase', Movie: movie });
   }
 );
 
