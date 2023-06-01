@@ -23,18 +23,16 @@ async function writeDataToDb() {
     const ratingData = await getRating();
     console.log('---Ratings added to database---');
 
-    setTimeout(async () => {
-      const movieData = await getMovie();
+    const movieData = await getMovie();
+    console.log('---Movies added to database---');
+  
+    const movieActorsData = await movieActors();
+    console.log('---Movie Actors added to database---');
+  
+  
+    const movieGenresData = await movieGenres();
+    console.log('---Movie Genres added to database---');
 
-      setTimeout(async () => {
-        const movieActorsData = await movieActors();
-        /* const movieGenreData = await movieGenres(); */
-      }, 3000); 
-    }, 3000);  
- 
-    
-     
-     
      
     
 }

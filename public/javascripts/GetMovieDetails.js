@@ -44,7 +44,6 @@ async function GetMovieDetails() {
     const sortedMovies = movieDetails.sort(
       (a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)
     );
-    console.log('sortedMovies sent:', sortedMovies.length);
     return sortedMovies;
     
   } catch (error) {

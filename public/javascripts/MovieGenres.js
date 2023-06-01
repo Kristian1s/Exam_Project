@@ -15,17 +15,15 @@ async function movieGenres() {
   }
 );
 
-movieGenres.forEach(function (movie) {
-    const { title, genres} = movie;
+
   fetch("http://localhost:3000/apiScript/movieGenres", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
     body: JSON.stringify({
-        Title: title,
-        Genres: genres
+        MovieGenres: movieGenres
     }),
-  })
-});}
+  });
+}
 module.exports = { movieGenres };

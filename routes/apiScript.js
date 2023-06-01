@@ -124,17 +124,26 @@ router.post("/movieActors", async function (req, res, next) {
 
 
 router.post("/movieGenres", async function (req, res, next) {
-  let {Genres ,Title } = req.body;
-  let movieFind = await movieService.findOne(Title);
-  let checkForEntry = await genreService.findInstance(movieFind.id);
-    if(!checkForEntry){
-  Genres.forEach(async function(genre){
-    let genreFind = await genreService.find(genre);
-    let genreInsert = await genreService.insertMovieGenre(genreFind.id, movieFind.id);
-  })
-  res.sendStatus(200);
-}else {
+  let movieGenres = req.body.MovieGenres;
+  console.log('movieGenres :', movieGenres);
+  for(const movie of movieGenres){
+    const title = movie.title;
+    const genres = movie.genres;
+    const movieFind = await movieService.findOne(title);
+  
+  for(const genre of genres){
+    const findGenre = await genreService.find(genre);
+    const genreId = findGenre.id;
+    const movieId = movieFind.id;
+
+    const checkForExistence = await genreService.existingRelationship(genreId, movieId);
+    if(!checkForExistence){
+      await genreService.insertMovieGenre(genreId, movieId);
+    }
+  }
+  }
+  
     res.sendStatus(204);
-  }    
+ 
 });
 module.exports = router;

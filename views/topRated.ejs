@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -22,12 +23,30 @@
               <td>
                 <div class="card flex-row"><img class="card-img-left example-card-img-responsive" src="<%= movie.Poster %>" alt="Movie Poster" height="200px"/>
                   <div class="card-body">
+                    <input id="ch" type="checkbox"
                     <!-- TODO make sure movie.Year is broguht up -->
                     <h2 class="card-title h5 h4-sm"><%= movie.Title %> <%=movie.Year%></h2>
+                    
+
+                    <!--GENRE INFO-->
+                    <div class="text">
                     <p class="card-text">Genres:
                       <% movie.Genres.forEach(function(genre, index) { %>
                         <%= genre.Name %><% if (index !== movie.Genres.length - 1) { %>,<% } %>
                       <% }); %></p>
+
+
+
+                      <!--ACTOR INFO-->
+                      <p class="card-text">Actors:
+                        <% movie.Actors.forEach(function(actor, index) { %>
+                          <%= actor.Name %><% if (index !== movie.Actors.length - 1) { %>,<% } %>
+                        <% }); %></p>
+
+                        <!--SHOW LESSS-->
+                        <label for="ch">Show less</label>
+                      </div>
+                      <label for="ch">Read more</label>
                   </div>
                 </div>
               </td>

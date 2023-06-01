@@ -38,6 +38,15 @@ class GenreService{
           }
         })
       }
+
+      async existingRelationship(genreId, movieId){
+        return this.MovieGenre.findOne({
+          where: {
+            GenreId: genreId,
+            MovieId: movieId
+          }
+        })
+      }
     }
     
 module.exports = GenreService;
