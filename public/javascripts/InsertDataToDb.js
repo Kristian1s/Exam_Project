@@ -8,19 +8,20 @@ const {movieActors} = require("./MovieActors")
 const {movieGenres} = require("./MovieGenres")
 
 async function writeDataToDb() {
+
     const genresData = await getGenres();
-    console.log('genresData sent :');
+    console.log('---Genres added to database---');
 
     const yearsData = await getYears();
-    console.log('yearsData sent :'); 
+    console.log('---Years added to database---'); 
     const directorsData = await getDirectors();
-    console.log('directorsData  SEnt:' );
+    console.log('---Directors added to database---' );
     
      const actorsData = await getActors();
-    console.log('actorsData  SEnt:');
+    console.log('---Actors added to database---');
     
     const ratingData = await getRating();
-
+    console.log('---Ratings added to database---');
 
     setTimeout(async () => {
       const movieData = await getMovie();

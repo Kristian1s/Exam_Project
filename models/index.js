@@ -14,8 +14,11 @@ const connection = {
   dialectmodel: process.env.DIALECTMODEL,
 };
 
+const connectionUrl = `${connection.dialect}://${connection.username}:${connection.password}@${connection.host}/${connection.database}`;
 //establishing connection with database and adding models to db object
-const sequelize = new Sequelize(connection);
+const sequelize = new Sequelize(connectionUrl, {
+logging: false
+});
 const db = {}
 db.sequelize = sequelize
 fs.readdirSync(__dirname)

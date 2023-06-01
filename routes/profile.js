@@ -18,8 +18,6 @@ var ratingService = new RatingService(db);
 /* GET home page. */
 router.get('/', async function(req, res, next) {
      const top100Movies = await movieService.getAll();
-     console.log('top100Movies :', top100Movies);
-
     res.render('profile', { title: 'MovieDatabase', Movies: top100Movies });
   }
 );

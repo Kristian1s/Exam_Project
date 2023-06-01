@@ -18,8 +18,6 @@ var ratingService = new RatingService(db);
 
 router.get('/', async function(req, res, next) {
      const genres = await genreService.getAll();
-     console.log('genres :', genres);
-
     res.render('genres', { title: 'MovieDatabase', Genres: genres });
   }
 );

@@ -83,7 +83,6 @@ router.post("/movie", async function (req, res, next) {
   let movieArray = req.body.MovieArray
   for (const movie of movieArray) {
     const movieExists = await movieService.findOne(movie.title);
-    console.log("DIRRRRRRRRRRRRRRRR" +movie.director)
     if (!movieExists) {
       const directorSearch = await directorService.find(movie.director);
       const directorId = directorSearch.dataValues.id;
@@ -105,7 +104,6 @@ router.post("/movieActors", async function (req, res, next) {
     const title = movie.title;
     const actors = movie.actors;
     const movieFind = await movieService.findOne(title);
-    console.log('movieFind :', movieFind);
     
     for (const actor of actors) {
       const findActor = await actorService.find(actor);
