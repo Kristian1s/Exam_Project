@@ -2,7 +2,7 @@ body {
   padding: 0px;
   padding-top: 5.2rem;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: grey;
+  background-color: #159895;
 }
 
 .middle {
@@ -14,14 +14,14 @@ body {
 
 }
 .topRatedWrapper {
-  background: linear-gradient(to bottom, #6c6b6b, #D3D3D3, #6c6b6b);
+  background: linear-gradient(to bottom,#1A5F7A ,  #159895);
 }
 .wrapperMovie{
-  height: 100vh;
-  background: linear-gradient(to bottom, #6c6b6b, #D3D3D3, #6c6b6b);
+  height:100vh;
+  background: linear-gradient(to bottom, #1A5F7A, #159895);
 }
 .content {
-  background-color: #D3D3D3;
+  background-color: #57C5B6 ;
   padding: 20px;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: 0.25rem;
@@ -59,71 +59,7 @@ body {
   font-size: 100px; 
   text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
-a:link {
-  color: #212529;
-  background-color: transparent;
-  text-decoration: underline;
-}
 
-a:visited {
-  color: #212529;
-  background-color: transparent;
-  text-decoration: underline;
-}
-.card {
-  display: flex;
-  align-items: flex-start;
-  padding: 0.7rem;
-}
-
-.poster {
-  margin-right: 20px; /* Adjust the margin as needed */
-}
-
-.title-and-genres {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex-grow: 1;
-}
-
-.navbar-brand
-{
-    position: relative;
-    width: 170px;
-    left: 15px;
-    max-height: 70px; /* height of the navbar */
-}
-
-
-
-.navbar-nav .nav-link {
-  font-size: 24px;
-}
-
-
-.rating{
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
-  margin: 0;
-  padding: 5px;
-}
-
-.icon-yellow {
-  color: #FFC502;
-  font-size: 20px;
-}
-
-
-.wrapperMovie {
-  display: flex;
-}
-
-.posterMovie {
-  float: left;
-  margin-right: 20px;
-}
 
 .info {
   flex: 1;
@@ -138,3 +74,7 @@ a:visited {
 }
 
 
+.posterMovie {
+  float: left;
+  margin-right: 20px;
+}

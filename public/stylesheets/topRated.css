@@ -1,0 +1,50 @@
+a.top:link{
+    color: #212529;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a.top:visited {
+    color: #212529;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  .card {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.7rem;
+  }
+  
+  .poster {
+    margin-right: 20px; /* Adjust the margin as needed */
+  }
+  
+  .title-and-genres {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+  }
+  
+  
+  
+  
+  .rating{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    margin: 0;
+    padding: 5px;
+  }
+  
+  .icon-yellow {
+    color: #FFC502;
+    font-size: 20px;
+  }
+  
+  
+  .wrapperMovie {
+    display: flex;
+  }
+  
+  

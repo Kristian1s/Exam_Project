@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/footer.css'/>
+    <link rel='stylesheet' href='/stylesheets/topRated.css' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
+    
     
   </head>
   <body>
@@ -31,8 +32,8 @@
                   <div class="card-body">
                     <input class="hideCheckbox" id="ch<%=index%>" type="checkbox">
                     <!-- TODO make sure movie.Year is brought up -->
-                    <a href="/movie/<%= movie.Title %>"><h2 style="width:70%" class="card-title h5 h4-sm"><%= movie.Title %></a> (<%=movie.Year.Year %>)</h2>
-                      <p class="rating"><span class="bi bi-star icon-yellow"></span><%=movie.Rating.Rating%></p>
+                    <a class="top"href="/movie/<%= movie.Title %>"><h2 style="width:70%" class="card-title h5 h4-sm"><%= movie.Title %></a> (<%=movie.Year.Year %>)</h2>
+                      <p class="rating"><i class="bi bi-star icon-yellow"></i><%=movie.Rating.Rating%></p>
                     <!--GENRE INFO-->
                     <div class="text" id="text<%=index%>">
                       <p class="card-text"><strong>Genres:</strong>
