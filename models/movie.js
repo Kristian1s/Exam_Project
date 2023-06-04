@@ -14,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
        Movie.hasMany(models.Watchlist);
        Movie.belongsTo(models.Year);
        Movie.belongsTo(models.Rating);
+       Movie.hasMany(models.Review);
     };
     return Movie
 }   

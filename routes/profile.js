@@ -13,13 +13,15 @@ var ActorService = require("../services/actorService");
 var actorService = new ActorService(db);
 var RatingService = require("../services/ratingService");
 var ratingService = new RatingService(db);
-
+const { requiresAuth } = require('express-openid-connect');
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-     const top100Movies = await movieService.getAll();
-    res.render('profile', { title: 'MovieDatabase', Movies: top100Movies });
-  }
+router.get('/', requiresAuth(), async function(req, res, next) {
+  const movies = await movieService.getAll();
+     
+
+  res.render('profile', { title: 'MovieDatabase', Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
+}
 );
 
 module.exports = router;

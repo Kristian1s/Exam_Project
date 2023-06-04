@@ -7,19 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    
-    <div class="header">
-      
-        <div class="header-text"><p><%=title%></p></div>
         <%- include('./partials/navbar.ejs')%>
-      </div>
- 
+    <div class="wrapperMovie">
+      
+      
+<p><%=user.nickname%> </p>
+<p><%=user.sub%> </p>
+<p><%=user.name%> </p>
+<p><%=user.nickname%> </p>
+<p> hey</p>
 
-    <div class="wrapper">
-        <div class="login">
+
+
+
+<%- include('./partials/footer.ejs')%>
             </div>
-
-    </div>
-    <%- include('./partials/footer.ejs')%>
+           
+   
   </body>
   </html>

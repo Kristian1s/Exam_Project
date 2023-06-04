@@ -1,6 +1,6 @@
 body {
   padding: 0px;
-  padding-top: 5.2rem;
+  padding-top: 5.6rem;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #159895;
 }
@@ -19,6 +19,9 @@ body {
 .wrapperMovie{
   height:100vh;
   background: linear-gradient(to bottom, #1A5F7A, #159895);
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
 }
 .content {
   background-color: #57C5B6 ;
