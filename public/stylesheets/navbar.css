@@ -1,5 +1,6 @@
 .navbar{
     background-color: #002B5B;
+    box-shadow: 2.0px 4.0px 4.0px hsl(0deg 0% 0% / 0.38);
 }
 .navbar-brand
 {
