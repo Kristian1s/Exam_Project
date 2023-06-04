@@ -15,6 +15,9 @@ a.top:link{
     padding: 0.7rem;
   }
   
+  .td-cards{
+    padding-top: 5px;
+  }
   .poster {
     margin-right: 20px; /* Adjust the margin as needed */
   }
