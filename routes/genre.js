@@ -18,7 +18,7 @@ var ratingService = new RatingService(db);
 
 router.get('/', async function(req, res, next) {
      const genres = await genreService.getAll();
-    res.render('genres', { title: 'MovieDatabase', Genres: genres, isAuthenticated: req.oidc.isAuthenticated() });
+    res.render('genres', { title: 'MovieVault', Genres: genres, isAuthenticated: req.oidc.isAuthenticated() });
   }
 );
 

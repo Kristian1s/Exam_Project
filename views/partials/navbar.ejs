@@ -24,9 +24,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/genre">Genres</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profile</a>
-                </li>
+
+
+                <% if (locals.isAuthenticated) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile/<%=user.name%>">Profile</a>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                    <% } %>
 
                   
                 

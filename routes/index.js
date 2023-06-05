@@ -8,9 +8,9 @@ router.get('/', async function (req, res, next) {
   if (flag) {
     await writeDataToDb();
     flag = false;
-    res.render('index', { title: 'MovieDatabase', isAuthenticated: req.oidc.isAuthenticated() });
+    res.render('index', { title: 'MovieVault', isAuthenticated: req.oidc.isAuthenticated() });
   } else {
-    res.render('index', { title: 'MovieDatabase', isAuthenticated: req.oidc.isAuthenticated() });
+    res.render('index', { title: 'MovieVault', isAuthenticated: req.oidc.isAuthenticated() });
   }
 });
 

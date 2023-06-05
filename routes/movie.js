@@ -17,7 +17,7 @@ var ratingService = new RatingService(db);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('movie', { title: 'MovieDatabase', isAuthenticated: req.oidc.isAuthenticated()});
+    res.render('movie', { title: 'MovieVault', isAuthenticated: req.oidc.isAuthenticated()});
 })
 
 router.get('/:title', async function(req, res, next) {
@@ -25,8 +25,15 @@ router.get('/:title', async function(req, res, next) {
      const movie = await movieService.find(title);
      
 
-    res.render('movie', { title: 'MovieDatabase', Movie: movie, isAuthenticated: req.oidc.isAuthenticated() });
+    res.render('movie', { title: 'MovieVault', Movie: movie, isAuthenticated: req.oidc.isAuthenticated() });
   }
 );
+
+
+router.post('/review', function(req, res, next) {
+
+  
+  res.render('movie', { title: 'MovieVault', isAuthenticated: req.oidc.isAuthenticated()});
+})
 
 module.exports = router;

@@ -85,3 +85,30 @@ body {
   margin-right: 20px;
   max-height: 100%;
 }
+
+.wrapperProfile{
+  float: right;
+  display: flex;
+
+  background-color: #ffffff;
+  height: 600px;
+  width: 30%;
+  padding-left: 1rem;
+
+
+}
+
+.wrapperContent{
+  padding: 10px;
+}
+
+.wrapperLeftProfile{
+  background-color: #ffffff;
+  float: left;
+  display: flex;
+  background-color: #ffffff;
+  height: 600px;
+  width: 30%;
+  padding-left: 1rem;
+
+}

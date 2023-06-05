@@ -20,7 +20,7 @@ router.get('/', async function(req, res, next) {
      const movies = await movieService.getAll();
      
 
-    res.render('topRated', { title: 'MovieDatabase', Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
+    res.render('topRated', { title: 'MovieVault', Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
   }
 );
 
