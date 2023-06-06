@@ -160,6 +160,12 @@ body.modal-open {
   bottom: -200px;
 }
 
+.leftContent #deleteProfile{
+  position: relative;
+  bottom: -210px;
+  padding-left: 9px;
+  padding-right: 9px;
+}
 .userProfile strong {
   font-weight: bold;
   color: #555;
@@ -169,20 +175,91 @@ body.modal-open {
   background-color: #555;
   height: 2rem;
   width: 100%;
-  /*
-  margin:-10px;
- 
-  width: 100%; */
+
 }
 
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+.rightContent{
+  background-color: #ffffff;
+  float: right;
+  align-items: center;
+  height: 600px;
+  width: 30%;
+  box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.rightContent h3{
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency as needed */
-  backdrop-filter: blur(5px);
-  z-index: 9999; /* Ensure the overlay is on top of other content */
+  background-color: rgb(153, 153, 153);
+  height: 40px;
+  position:static;
+  text-align: center;
+  box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  
 }
+.watchlistCard {
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+
+
+.watchlistItem img {
+  margin-right: 10px;
+  border-style:ridge;
+  box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 0.15);
+}
+
+.watchlistContainer {
+  max-height: 540px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+.watchlistCard {
+  margin-bottom: 10px;
+}
+
+.watchlistItem {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.link{
+  text-decoration: underline;
+  color:  #212529;;
+}
+
+ .reviewWrapper {
+  background-color: #ffffff;
+  height: 17rem;
+  display: flex;
+  
+}
+/*
+.reviewNode {
+  flex: 1;
+  margin: 0 10px;
+  background-color: lightgray;
+} */
+
+
+/* .movieReview button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.reviewName{
+  padding-left: 10px;
+  padding-bottom: 0px;
+}
+
+.leaveReview{
+  text-align: left ;
+} */

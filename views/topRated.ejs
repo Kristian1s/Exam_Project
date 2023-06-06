@@ -6,6 +6,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/topRated.css' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/javascripts/BrowserFunctions/TopRated.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -33,8 +34,11 @@
                     <input class="hideCheckbox" id="ch<%=index%>" type="checkbox">
                     <!-- TODO make sure movie.Year is brought up -->
                     <a class="top"href="/movie/<%= movie.Title %>"><h2 style="width:70%" class="card-title h5 h4-sm"><%= movie.Title %></a> (<%=movie.Year.Year %>)</h2>
-                      <p class="rating"><i class="bi bi-star icon-yellow"></i><%=movie.Rating.Rating%></p>
-                    <!--GENRE INFO-->
+                      <p class="rating"><i class="bi bi-star icon-yellow"></i><%=movie.Rating.Rating%>
+                        <% if (isAuthenticated) { %>
+                         <br><button class="btn" onclick="addToWatchlist('<%=movie.id%>','<%=user.name%>')" title="Add to watchlist" class="watchlist"><i  class="fa fa-list" id="watchlist" aria-hidden="true"></i></button></p>
+                         <% } %>
+                         <!--GENRE INFO-->
                     <div class="text" id="text<%=index%>">
                       <p class="card-text"><strong>Genres:</strong>
                         <% movie.Genres.forEach(function(genre, genreIndex) { %>
@@ -112,5 +116,6 @@
   </div>
 </div>
 <%- include('./partials/footer.ejs')%>
+
   </body>
   </html>

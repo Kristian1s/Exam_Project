@@ -37,6 +37,14 @@ class UserService{
           }
         });
       }
+      
+      async deleteProfile(username){
+        return this.User.destroy({
+          where: {
+            Username: username
+          }
+        })
+      }
 
     }
     

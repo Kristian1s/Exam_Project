@@ -4,6 +4,7 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
@@ -50,7 +51,36 @@
               </div>
             </div>
           </div>
+          <% if(isAuthenticated){ %>
+          <div class="reviewWrapper">
+            <div class="reviewNode">
+              <% if(UserInfo === false){ %>
+                <p>Create a profile to review movies</p>
+                
+              <% }else{%>
+                <div class="reviewNode">
+                <p>Leave a review</p>
+            <button onclick="handleReview('<%=user.name%>','<%=Movie.id%>')">Review</button>
+          </div>
+          <%}%>
+              <% if(Reviews){ %>
+                <div class="reviewNode">
+                <p class="reviewName"><strong><%= Reviews.User.Nickname %></strong></p>
+                <img src="/images/<%= Reviews.User.Avatar%>.png" height="70px" width="70px" />
+                
+                <p><%= Reviews.ReviewText %></p>
+                <p>Rating: <strong><%= Reviews.UserRating %>/10</strong></p>
+            </div>
+              <% }else{ %>
+
+
+                <% } %>
+            </div>
+          </div>
+          <% } %>
+          
+          <%- include('./partials/footer.ejs')%>
         </div>
-        <%- include('./partials/footer.ejs')%>
+        <script src="/javascripts/BrowserFunctions/Review.js" ></script>
   </body>
   </html>

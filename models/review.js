@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Review = sequelize.define('Review', {
         ReviewText:  Sequelize.DataTypes.STRING,
-        UserRating:  Sequelize.DataTypes.DECIMAL(10,1)
+        UserRating:  Sequelize.DataTypes.INTEGER
     },{
         timestamps: false
     });

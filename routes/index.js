@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { writeDataToDb } = require('../public/javascripts/InsertDataToDb');
+var { writeDataToDb } = require('../public/javascripts/CollectData/InsertDataToDb');
 
 let flag = true;
 
