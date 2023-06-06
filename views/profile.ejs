@@ -16,8 +16,8 @@
           .avatar-option {
             display: none;
           }
-          .wrapperProfile {
-            /*  display: none;  */
+          .wrapperProfileForm {
+            display: none;
           }
         </style>
       </head>
@@ -25,24 +25,45 @@
         <%- include('./partials/navbar.ejs')%>
         <div class="wrapperMovie">
           <div class="wrapperContent">
-            <div class="wrapperLeftProfile">
-              <div>
-                <H3>Your profile</H3>
-                <%if(isAuthenticated){%>
-                <p><%= user.name %></p>
-
+            
+              
+              <div class="leftContent">
+                <h3><strong>Profile</strong></h3>
+                <div class="contentWrapper">
+                <%if(isAuthenticated){%> 
+                  <%if(!UserInfo){%>
+                    <p>You don't have a profile yet</p>
+                <button id="toggleProfileBtn">Create Profile</button>
+                <%} if(UserInfo){%>
+                <div class="userProfile">
+                  <img src="/images/<%=UserInfo.Avatar%>.png"height="100px"width="100px"/>
+                  <p><strong>Username: </strong><%= UserInfo.Nickname %></p>
+                  <p><strong>Age: </strong><%= UserInfo.Age %></p>
+                  <p><strong>Bio: </strong></p>
+                  <p><%= UserInfo.Bio %></p>
+                  
+                </div>
+              
+                <button id="toggleProfileBtn">Update Profile</button><br>
+                <button id="deleteProfile">Delete Profile</button>
+                <% } %>
                 <%} else{%>
-                <button id="createProfile">Create profile</button>
-                
-                <p>asdasd</p>
+                <h4>Sign in to manage your profile</h4>
+                <form action="/login">
+                  <input type="submit" value="Sign in" />
+                </form>
                 <%}%>
-                
-                <p><%=/* UserFromDb.Username */%></p>
               </div>
             </div>
-            <div class="wrapperProfile">
+            <div class="wrapperProfileForm">
               <form id="profileForm" action="" method="POST">
-                <h3>Update profile</h3>
+                <% if(!UserInfo) { %>
+                  <h3>Create profile</h3>
+                    
+                <%}else{%>
+                  <h3>Update profile</h3>
+                <%}%>
+                
                 <label for="nickname">Nickname:</label><br />
                 <input
                   type="text"
@@ -77,12 +98,26 @@
                   <option value="yoda">Yoda</option></select
                 ><br /><br />
 
-                <input type="submit"  value="Submit" />
+                <input type="submit" onclick="refresh()" value="Submit" />
               </form>
               <script>
                 const form = document.getElementById('profileForm');
+                const toggleProfileBtn =
+                  document.getElementById('toggleProfileBtn');
+                const wrapperProfile =
+                  document.querySelector('.wrapperProfileForm');
+                const body = document.body;
+
+                toggleProfileBtn.addEventListener('click', function () {
+                  const currentDisplay =
+                    getComputedStyle(wrapperProfile).display;
+                  wrapperProfile.style.display =
+                    currentDisplay === 'none' ? 'block' : 'none';
+                  body.classList.toggle('modal-open');
+                });
+
                 form.addEventListener('submit', function (event) {
-                  event.preventDefault();
+                    event.preventDefault();  
 
                   const formData = new FormData(form);
 
@@ -94,34 +129,49 @@
                     body: JSON.stringify({
                       FormData: Object.fromEntries(formData),
                     }),
-                  }).then((response) => {
-                    console.log('Form submitted successfully');
-                  });
-
-                  const avatarSelect = document.getElementById('avatar');
-                  avatarSelect.addEventListener('change', function (event) {
-                    const selectedAvatar = avatarSelect.value;
-                    const avatarOptions =
-                      document.getElementsByClassName('avatar-option');
-
-                    for (let i = 0; i < avatarOptions.length; i++) {
-                      avatarOptions[i].style.display = 'none';
-                    }
-
-                    if (selectedAvatar) {
-                      const selectedOption = document.getElementById(
-                        `avatar-option-${selectedAvatar}`
-                      );
-                      selectedOption.style.display = 'block';
-                    }
-                  });
+                  })
+                    .then((response) => {
+                      console.log('Form submitted successfully');
+                      // Reset the form fields if needed
+                      form.reset();
+                      // Hide the profile form after submitting
+                      wrapperProfile.style.display = 'none';
+                      body.classList.remove('modal-open');
+                    })
+                    .catch((error) => {
+                      console.error('Error submitting form:', error);
+                    });
                 });
-              </script>
-            </div>
-          </div>
 
-          <%- include('./partials/footer.ejs')%>
-        </div>
+                const avatarSelect = document.getElementById('avatar');
+                avatarSelect.addEventListener('change', function (event) {
+                  const selectedAvatar = avatarSelect.value;
+                  const avatarOptions =
+                    document.getElementsByClassName('avatar-option');
+
+                  for (let i = 0; i < avatarOptions.length; i++) {
+                    avatarOptions[i].style.display = 'none';
+                  }
+
+                  if (selectedAvatar) {
+                    const selectedOption = document.getElementById(
+                      `avatar-option-${selectedAvatar}`
+                    );
+                    selectedOption.style.display = 'block';
+                  }
+                });
+
+                function refresh(){
+                  setTimeout(() => {
+                    location.reload();
+                  }, 50);
+                }
+              </script>
+            </div><!--WRapper ProfileForm-->
+        </div><!--WRapper Content-->
+            <%- include('./partials/footer.ejs')%>
+          </div> <!--WRapper movie-->
+    
       </body>
     </html>
   </head>

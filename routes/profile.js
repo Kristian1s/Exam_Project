@@ -15,37 +15,49 @@ var RatingService = require("../services/ratingService");
 var ratingService = new RatingService(db);
 const { requiresAuth } = require('express-openid-connect');
 const UserService = require('../services/userService');
-const { render } = require('ejs');
 const userService = new UserService(db);
 
-
- router.get('/', requiresAuth(), async function(req, res, next) {
+//Profile loaded for non signed in users
+ router.get('/',  async function(req, res, next) {
   const movies = await movieService.getAll();
-  /*  const user = await userService.find()  */
-  res.render('profile', { title: 'MovieVault', Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
+  res.render('profile', { title: 'MovieVault', UserInfo: false, Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
 }
 ); 
 
- router.get('/:username', requiresAuth(), async function(req, res, next) {
+
+
+//Profile loaded for signed in users
+router.get('/:username', requiresAuth(), async function(req, res, next) {
+  const user = req.params.username;
+  console.log('user :', user);
   const movies = await movieService.getAll();
-  const user = req.params;
-  if(!user){
-    res.redirect("/login")
-  }
-  const username = req.params.username;
-  let findUser = await userService.find(username);
-  if(findUser){
-    res.render('profile', {UserFromDb: findUser, isAuthenticated: req.oidc.isAuthenticated(), Movies: movies })
-  }
-  res.render('profile', {UserFromDb: "noUser",  title: 'MovieVault', Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
+  const userExistsInDb = await userService.find(user);
+  if(userExistsInDb){
+    res.render("profile" , {title:'MovieVault', UserInfo: userExistsInDb, Movies: movies, isAuthenticated: req.oidc.isAuthenticated()})
+    console.log("User WAS found")
+  }else{
+  res.render('profile', { title: 'MovieVault', UserInfo: false, Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
+  console.log("no user found in Db")}
 }
 ); 
+
+
 
 router.post('/', requiresAuth(), async function(req, res, next) {
-  const { nickname, age, bio, avatar } = req.body;
-
+  const username = req.oidc.user.name;
+  const { nickname, age, bio, avatar } = req.body.FormData; 
   const movies = await movieService.getAll();
-  res.render("profile", { title: 'MovieVault', Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
-});
+const userExists = await userService.find(username);
+if(userExists){
+  const updatedUser = await userService.update(username, nickname, avatar, age, bio);
+  res.redirect(`profile/${username}`);
+}else{
+const createdUser = await userService.create(username, nickname, avatar, age, bio)
+res.redirect(`profile/${username}`);
+}});
+
+router.delete("/",requiresAuth(), async function(req,res,next){
+  const username = req.oidc.user.name;
+})
 
 module.exports = router;

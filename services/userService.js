@@ -7,12 +7,27 @@ class UserService{
     
       async create(username, nickname, avatar, age, bio) {
         return this.User.create({
-            UserName: username,
+            Username: username,
             Nickname: nickname,
             Avatar: avatar,
             Age: age,
             Bio: bio
         });
+      }
+      async update(username, nickname, avatar, age, bio) {
+        return this.User.update(
+          {
+            Nickname: nickname,
+            Avatar: avatar,
+            Age: age,
+            Bio: bio
+        },
+        {
+          where: {
+            Username: username
+          }
+        }
+        );
       }
     
       async find(username) {
