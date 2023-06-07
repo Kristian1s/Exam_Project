@@ -23,36 +23,37 @@ router.get('/', function(req, res, next) {
 })
 
 router.get('/:title', async function(req, res, next) {
-  //title to acess
-  
   const title = req.params.title;
- 
-     const movie = await movieService.find(title);
-     let review = await reviewService.findWithMovieId(movie.id)
-    
-     //If user is signed in
-     if (req.oidc.isAuthenticated()){
-     const username = req.oidc.user.name;
-     //Check if user has a profile
-     const userExists = await userService.find(username);
-     console.log('userExists :', userExists);
+  const movie = await movieService.find(title);
+  let review = await reviewService.findWithMovieId(movie.id);
 
-     //if user has a profile
-     if(userExists){
-      res.render('movie', { title: 'MovieVault', Movie: movie, UserInfo: userExists, Reviews: review, isAuthenticated: req.oidc.isAuthenticated() });
-     }
-     res.render('movie', { title: 'MovieVault', Movie: movie, UserInfo: false, Reviews: review, isAuthenticated: req.oidc.isAuthenticated() });
+
+  if (req.oidc.isAuthenticated()) {
+    const username = req.oidc.user.name;
+
+ 
+    const userExists = await userService.find(username);
+    console.log('userExists:', userExists);
+
+   
+    if (userExists) {
+      return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: userExists,Reviews: review,isAuthenticated: req.oidc.isAuthenticated()});
     }
-    res.render('movie', { title: 'MovieVault', Movie: movie, UserInfo: false, Reviews: false, isAuthenticated: req.oidc.isAuthenticated() });
+
+    return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: false,Reviews: review,isAuthenticated: req.oidc.isAuthenticated()});
   }
-);
+
+  return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: false,Reviews: false,isAuthenticated: req.oidc.isAuthenticated()});
+});
 
 
 router.post('/review', async function(req, res, next) {
+
 const {rating, review, UserName, MovieId} = req.body;
-console.log('{rating, review, UserName, MovieId} :', {rating, review, UserName, MovieId});
+
 const user = await userService.find(UserName);
 const userId = user.id;
+
 const movieReview = await reviewService.create(review,rating,MovieId, userId);
 res.status(200).json({ message: 'Review posted' });
 })
