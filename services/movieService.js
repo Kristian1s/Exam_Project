@@ -53,6 +53,8 @@ class MovieService{
         })
       }
 
+  
+
       async findTen() {
         return this.Movie.findAll({
           where: {

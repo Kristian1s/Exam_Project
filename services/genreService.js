@@ -1,7 +1,7 @@
 class GenreService{
     constructor(db){
         this.client = db.sequelize; 
-        this.user = db.user;
+        this.Movie = db.Movie;
         this.Genre = db.Genre;
         this.MovieGenre = db.MovieGenre;
     }
@@ -36,6 +36,19 @@ class GenreService{
           where: {
             MovieId: movieId
           }
+        })
+      }
+
+      async findMoviesWithGenreId(genreId){
+        return this.MovieGenre.findAll({
+          where: {
+            GenreId: genreId
+          },
+          include: [
+            {
+            model: this.Movie
+          }
+          ]
         })
       }
 

@@ -4,27 +4,23 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    
         <%- include('./partials/navbar.ejs')%>
         <div class="wrapperMovie">
-          <div class="middleContent">
-            <div class="description">
-              <h2>Browse movies by Genres</h2>
-              <br>
-            </div>
+            <div class="middleContent">
+                <h3>Movies with the <%=Genre %> genre</h3>
             <div class="genres">
-              <%Genres.forEach(function(genre){%>
-                <a href="/genre/<%=genre.Name%>"><h5><%=genre.Name%></h5></a>
-             <% })%>
-            </div>
-        
-          
-          </div>
+            <%GenreMovies.forEach(function(movie){%>
+                <a href="/movie/<%= movie.Movie.Title%>"><p><strong><%= movie.Movie.Title %></strong></p></a>
+
+           <% })%>
+        </div>
+    </div>
           <%- include('./partials/footer.ejs')%>
         </div>
-       
+        <script src="/javascripts/BrowserFunctions/Review.js" ></script>
   </body>
   </html>

@@ -13,6 +13,13 @@ body {
 
 
 }
+.middleContent{
+  padding-top: 20px;
+  background-color: #ffffff;
+text-align: center;
+  max-width: 30%;
+  box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
+}
 .topRatedWrapper {
   background: linear-gradient(to bottom,#1A5F7A ,  #159895);
 }
@@ -238,6 +245,29 @@ body.modal-open {
   height: 17rem;
   display: flex;
   
+}
+.genres{
+  color: #212529;
+  background-color: #ffffff;
+  padding-top: 20px;
+  overflow-y: auto;
+  max-height: 900px;
+}
+a h5{
+  color: #212529;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a p{
+  color: #212529;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:visited {
+  
+  background-color: transparent;
+  text-decoration: underline;
 }
 /*
 .reviewNode {

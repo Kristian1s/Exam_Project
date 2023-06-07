@@ -22,4 +22,15 @@ router.get('/', async function(req, res, next) {
   }
 );
 
+
+
+router.get('/:genre', async function(req, res, next) {
+  const Genres = req.params.genre;
+const genre = await genreService.find(Genres);
+
+const findMoviesWithGenre = await genreService.findMoviesWithGenreId(genre.id);
+ res.render('genre', { title: 'MovieVault', Genre: Genres, GenreMovies: findMoviesWithGenre, isAuthenticated: req.oidc.isAuthenticated() }); 
+}
+);
+
 module.exports = router;
