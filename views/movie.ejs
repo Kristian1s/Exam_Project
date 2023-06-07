@@ -55,8 +55,8 @@
           <div class="reviewWrapper">
             <div class="reviewNode">
               <% if(UserInfo === false){ %>
-                <p>Create a profile to review movies</p>
-                
+                <a href="/profile/<%= user.name %>"><p>Create a profile to review movies</p></a>
+                  
               <% }else{%>
                 <div class="reviewNode">
                 <p>Leave a review</p>
