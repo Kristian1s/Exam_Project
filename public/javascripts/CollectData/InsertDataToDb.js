@@ -8,6 +8,9 @@ const {movieActors} = require("./MovieActors")
 const {movieGenres} = require("./MovieGenres")
 
 async function writeDataToDb() {
+
+
+  try {
     const genresData = await getGenres();
     console.log('---Genres added to database---');
 
@@ -31,6 +34,13 @@ async function writeDataToDb() {
   
     const movieGenresData = await movieGenres();
     console.log('---Movie Genres added to database---');
+  }
+   catch (error) {
+    console.error(error);
+    // Expected output: ReferenceError: nonExistentFunction is not defined
+    // (Note: the exact output may be browser-dependent)
+  }
 }
+   
   
   module.exports = { writeDataToDb };

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 class MovieService{
     constructor(db){
         this.client = db.sequelize; 
@@ -50,6 +51,16 @@ class MovieService{
             Title: movie
           }
         })
+      }
+
+      async findTen() {
+        return this.Movie.findAll({
+          where: {
+            id: {
+              [Op.lt]: 11
+            }
+          }
+        });
       }
 
       async find(movie) {

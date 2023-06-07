@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 class ReviewService{
     constructor(db){
         this.client = db.sequelize; 
@@ -55,6 +56,42 @@ class ReviewService{
         });
       }
 
+
+
+      async  findRecentReviews() {
+        return this.Review.findAll({
+          where: {},
+          order: [['id', 'DESC']],
+          limit: 3,
+          include:[
+            {
+            model: this.User
+          },
+          {
+            model: this.Movie
+          }
+        ]
+        });
+      }
+
+      async findHighReview() {
+        return this.Review.findAll({
+          where: {
+            UserRating: {
+              [Op.gt]: 7
+            }
+          },
+          include: [
+            {
+              model: this.User
+            },
+            {
+              model: this.Movie
+            }
+          ]
+        });
+      }
     }
+    
     
 module.exports = ReviewService;

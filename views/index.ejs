@@ -15,16 +15,64 @@
         <%- include('./partials/navbar.ejs')%>
         <div id="app">
 
-          <div id="left">left content</div>
-  
+          <div id="left">
+            <div id="leftContent">
+            <% Top10.forEach(function(movie){ %>
+             <div class="card">
+              <img src="<%=movie.Poster%>" alt="Image">
+              <a class=" link title" href="/movie/<%=movie.Title%>"><%=movie.Title%></a>
+              <p class="rating"><%=movie.id%></p>
+            
+             </div>
+          <%})%>
+        </div>
+        </div>
+      
       <div id="middle">
               <div id="carusel">carousel</div>
-              <div id="info">info</div>
+
+          <div id="infoWrapper">
+            <h3>Recent reviews by users:</h3>
+              <div id="info">
+                <% Reviews.forEach(function(review){ %>
+                  <div class="infoItem">
+                    <p><strong><%=review.Movie.Title%></strong></p>
+                    <img src="/images/<%=review.User.Avatar%>.png"height="100px"width="100px"/>
+                    <p><%= review.User.Nickname %></p>
+                    <p><%=review.ReviewText%></p>
+                    <p id="rating">Rating: <strong><%=review.UserRating%></strong></p>
+                  </div>
+                 
+
+              <% })  %>
+              </div>
+            </div>
           </div>
   
           <div id="right">
             <div id="rightTop">Right Top</div>
-            <div id="rightBot">Right Bot</div>
+            <div id="rightBot">
+                <h3>Other users loved:</h3>
+                <p><%=GoodMovie.highlyRatedMovie.Movie.Title%></p>
+                <img src="<%=GoodMovie.highlyRatedMovie.Movie.Poster%>" alt="Image" widht="200px" height="300px">
+                <p><strong>Director: </strong><%=GoodMovie.movieDetails.Director.Name%></p>
+                <p><strong>Actors:</strong>
+                  <%GoodMovie.movieDetails.Actors.forEach(function(actor, actorIndex) { %>
+                    <%= actor.Name %><% if (actorIndex !== GoodMovie.movieDetails.length - 1) { %>,<% } %>
+                  <% }); %>
+                </p>
+
+                <p><strong>Genres:</strong>
+                  <% GoodMovie.movieDetails.Genres.forEach(function(genre, genreIndex) { %>
+                    <%= genre.Name %><% if (genreIndex !== GoodMovie.movieDetails.Genres.length - 1) { %>,<% } %>
+                  <% }); %>
+                </p>
+    
+                <img src="/images/<%=GoodMovie.highlyRatedMovie.User.Avatar%>.png"height="100px"width="100px"/>
+                <p><strong><%=GoodMovie.highlyRatedMovie.User.Nickname%></strong></p>
+                <p><%=GoodMovie.highlyRatedMovie.ReviewText%></p>
+                <p><strong><%= GoodMovie.highlyRatedMovie.UserRating %></strong></p>
+            </div>
             </div>
 
           </div>

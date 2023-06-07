@@ -9,14 +9,23 @@
     background-color: grey;
     display: flex;
     align-items: center;
+    border-style: solid;
+    padding:20px;
   }
-  
+
+  #leftContent{
+    height:100%;
+    width: 100%;
+    border-style: solid;
+    overflow-y: auto;
+  }
   #middle {
     width: 45%;
+    background-color: #212529;
   }
   
   #carusel {
-    height: 70%;
+    height: 60%;
     background-color: white;
   }
   #right {
@@ -27,15 +36,67 @@
   #rightTop{
     height: 35%;
     background-color: #212529;
+    
   }
   
   #rightBot{
+    padding-left: 10px;
     height: 65%;
     background-color: rgb(191, 184, 184);
   }
+  #infoWrapper h3{
+    color:aliceblue;
+    text-align: center;
+    background-color: grey;
+    padding-top: 10px;
+  }
+
+
   #info{
-    height: 30%;
-    background-color: black;
+    height: 40%;
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+  }
+  .infoItem{
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 15px;
+    text-align: center;
+    max-width:270px; ;
+    max-height: 380px;
   }
   
+  .card {
+    display: flex;
+    margin-bottom: 6px;
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 2px 4px 2px 2px rgba(0, 0, 0, 0.15);
+    text-align: end;
+  }
   
+  .card img {
+    width: 70px;
+    height: 100px;
+    margin-right: 10px;
+  }
+  
+  .card .title {
+    display:flex;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .card .rating {
+    align-items: center;
+    font-size: x-large;
+    color: black;
+  }
+
+  #rating{
+   display: flex;
+	flex-direction: row;
+  }
