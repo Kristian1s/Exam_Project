@@ -17,27 +17,34 @@ var ReviewService = require("../services/reviewService");
 var UserService = require('../services/userService');
 var userService = new UserService(db);
 var reviewService = new ReviewService(db);
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('movie', { title: 'MovieVault', isAuthenticated: req.oidc.isAuthenticated()});
 })
 
 router.get('/:title', async function(req, res, next) {
+  //title to acess
+  
   const title = req.params.title;
  
      const movie = await movieService.find(title);
-     const review = await reviewService.findWithMovieId(movie.id)
-     if (req.oidc.isAuthenticated()) {
+     let review = await reviewService.findWithMovieId(movie.id)
+    
+     //If user is signed in
+     if (req.oidc.isAuthenticated()){
      const username = req.oidc.user.name;
+     //Check if user has a profile
      const userExists = await userService.find(username);
      console.log('userExists :', userExists);
+
+     //if user has a profile
      if(userExists){
       res.render('movie', { title: 'MovieVault', Movie: movie, UserInfo: userExists, Reviews: review, isAuthenticated: req.oidc.isAuthenticated() });
-     }}else{
-
-    res.render('movie', { title: 'MovieVault', Movie: movie, UserInfo: false, Reviews: review, isAuthenticated: req.oidc.isAuthenticated() });
-  }}
+     }
+     res.render('movie', { title: 'MovieVault', Movie: movie, UserInfo: false, Reviews: review, isAuthenticated: req.oidc.isAuthenticated() });
+    }
+    res.render('movie', { title: 'MovieVault', Movie: movie, UserInfo: false, Reviews: false, isAuthenticated: req.oidc.isAuthenticated() });
+  }
 );
 
 

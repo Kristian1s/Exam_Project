@@ -12,11 +12,11 @@
         <%- include('./partials/navbar.ejs')%>
         <div class="wrapperMovie">
           <div class="middle">
-            <div class="movie-details">
+            <!-- <div class="movie-details"> -->
              
               <div class="info">
                 <div class="posterMovie">
-                  <img src="<%= Movie.Poster %>" height="448px">
+                  <img src="<%= Movie.Poster %>" height="480px">
                 </div>
                 <div class="contentMovie">
                   <h1 class="title"><%= Movie.Title %></h1>
@@ -49,7 +49,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+           <!--  </div> -->
           </div>
           <% if(isAuthenticated){ %>
           <div class="reviewWrapper">

@@ -74,7 +74,8 @@ text-align: center;
 .info {
   flex: 1;
   background-color: #ffffff;
-  height: 28rem;
+  height: 30rem;
+  overflow-y: auto;
   box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
 }
 

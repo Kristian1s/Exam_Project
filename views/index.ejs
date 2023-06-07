@@ -36,7 +36,7 @@
               <div id="info">
                 <% Reviews.forEach(function(review){ %>
                   <div class="infoItem">
-                    <p><strong><%=review.Movie.Title%></strong></p>
+                    <a href="/movie/<%=review.Movie.Title%>"><p><strong><%=review.Movie.Title%></strong></p></a>
                     <img src="/images/<%=review.User.Avatar%>.png"height="100px"width="100px"/>
                     <p><%= review.User.Nickname %></p>
                     <p><%=review.ReviewText%></p>
@@ -52,8 +52,12 @@
           <div id="right">
             <div id="rightTop">Right Top</div>
             <div id="rightBot">
-                <h3>Other users loved:</h3>
-                <p><%=GoodMovie.highlyRatedMovie.Movie.Title%></p>
+                <h3 class="h3review">Other users loved:</h3>
+                <%if(GoodMovie.highlyRatedMovie === null || GoodMovie.movieDetails === null){%>
+                  <br><br>
+                    <h3>No user reviews yet</h3>
+                <%}else{%>
+                <a href="/movie/<%=GoodMovie.highlyRatedMovie.Movie.Title%>"><p><%=GoodMovie.highlyRatedMovie.Movie.Title%></p></a>
                 <img src="<%=GoodMovie.highlyRatedMovie.Movie.Poster%>" alt="Image" widht="200px" height="300px">
                 <p><strong>Director: </strong><%=GoodMovie.movieDetails.Director.Name%></p>
                 <p><strong>Actors:</strong>
@@ -70,9 +74,13 @@
     
                 <img src="/images/<%=GoodMovie.highlyRatedMovie.User.Avatar%>.png"height="100px"width="100px"/>
                 <p><strong><%=GoodMovie.highlyRatedMovie.User.Nickname%></strong></p>
+                <div class="reviewtext">
                 <p><%=GoodMovie.highlyRatedMovie.ReviewText%></p>
+              </div>
                 <p><strong><%= GoodMovie.highlyRatedMovie.UserRating %></strong></p>
-            </div>
+           
+            <% } %>
+          </div>
             </div>
 
           </div>
