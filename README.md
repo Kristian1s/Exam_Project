@@ -14,9 +14,9 @@ Use the following SQL script to create the “myTodo” MySQL Database:
 
 Use the following SQL script to create an “admin” Database User with all database privileges:
 
-CREATE USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY "P4ssword12";
-ALTER USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY "P4ssword12";
-GRANT ALL PRIVILEGES ON MovieDb.* TO 'admin'@'localhost';
+CREATE USER 'ProjectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY "P4ssword12";
+ALTER USER 'ProjectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY "P4ssword12";
+GRANT ALL PRIVILEGES ON MovieDb.* TO 'ProjectAdmin'@'localhost';
 
 2. Next is getting the enviroment ready for running the app:
 - Open this repository in your code editor
@@ -27,6 +27,7 @@ GRANT ALL PRIVILEGES ON MovieDb.* TO 'admin'@'localhost';
 - When you start up the application, it will take some time initially, this is cause the server is writing the data to the database. After thats done it runs much faster
 - Now the database will be correctly created with tables and relationships, and the app is running.
 - You can access the app at "http://localhost:3000/"
+- To have access to certain user actions you will need to signup with Auth0, this is easy, just find "Sign in" on the navbar and follow instructions.
 
 
 # Environment Variables
