@@ -27,7 +27,7 @@ const reviewService = new ReviewService(db);
 //Profile loaded for non signed in users
  router.get('/',  async function(req, res, next) {
   const movies = await movieService.getAll();
-  res.render('profile', { title: 'MovieVault', UserInfo: false, Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
+  res.render('profile', { title: 'MovieVault', UserInfo: false, Movies: movies,WatchList: false, isAuthenticated: req.oidc.isAuthenticated()});
 }
 ); 
 
@@ -41,7 +41,6 @@ router.get('/:username', requiresAuth(), async function(req, res, next) {
   if(userExistsInDb){
     const userId = userExistsInDb.id;
     const watchList = await watchlistService.findWithUserId(userId);
-    console.log('watchList :', watchList);
     res.render("profile" , {title:'MovieVault', UserInfo: userExistsInDb, Movies: movies, WatchList: watchList, isAuthenticated: req.oidc.isAuthenticated()})
   }else{
   res.render('profile', { title: 'MovieVault', UserInfo: false, Movies: movies, WatchList: false, isAuthenticated: req.oidc.isAuthenticated()});
@@ -68,7 +67,6 @@ router.delete("/", requiresAuth(), async function(req, res, next) {
   const username = req.body.Username;
   let user = await userService.find(username);
   let userId = user.id;
-  console.log('user :', userId);
   let usersWatchlist = await watchlistService.findWithUserId(userId)
   if(usersWatchlist){
    let destroyWatchlist = await watchlistService.destroyWatchlist(userId)

@@ -23,9 +23,9 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   baseURL: 'http://localhost:3000',
-  clientID: 'eHY4UngXY1ZLgV1DAR8d6voRz6IKJWjq',
+  clientID: process.env.CLIENT_ID,
   issuerBaseURL: 'https://dev-hyspsddpa65uyong.us.auth0.com',
-  secret: 'd5f58eb2201834fd5d63cbffdca234e4eb5219444e16275ccf306572b730a05884ac1aa429d1d8e1fb60e08d2063b04967ddfd4c5777ccf438b43a46ab681b99',
+  secret: process.env.SECRET,
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL

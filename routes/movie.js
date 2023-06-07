@@ -17,6 +17,8 @@ var ReviewService = require("../services/reviewService");
 var UserService = require('../services/userService');
 var userService = new UserService(db);
 var reviewService = new ReviewService(db);
+
+const { requiresAuth } = require('express-openid-connect');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('movie', { title: 'MovieVault', isAuthenticated: req.oidc.isAuthenticated()});
@@ -33,7 +35,7 @@ router.get('/:title', async function(req, res, next) {
 
  
     const userExists = await userService.find(username);
-    console.log('userExists:', userExists);
+
 
    
     if (userExists) {
@@ -47,7 +49,7 @@ router.get('/:title', async function(req, res, next) {
 });
 
 
-router.post('/review', async function(req, res, next) {
+router.post('/review',requiresAuth(), async function(req, res, next) {
 
 const {rating, review, UserName, MovieId} = req.body;
 
