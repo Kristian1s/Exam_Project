@@ -10,6 +10,8 @@
   <body>
         <%- include('./partials/navbar.ejs')%>
         <div class="wrapperMovie">
+          <div class="genrePageWrapper">
+
             <div class="middleContent">
                 <h3>Movies with the <%=Genre %> genre</h3>
             <div class="genres">
@@ -17,6 +19,7 @@
                 <a href="/movie/<%= movie.Movie.Title%>"><p><strong><%= movie.Movie.Title %></strong></p></a>
 
            <% })%>
+          </div>
         </div>
     </div>
           <%- include('./partials/footer.ejs')%>

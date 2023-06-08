@@ -10,18 +10,18 @@
     
         <%- include('./partials/navbar.ejs')%>
         <div class="wrapperMovie">
-          <div class="middleContent">
-            <div class="description">
-              <h2>Browse movies by Genres</h2>
-              <br>
+          <div class="genrePageWrapper">
+            <div class="middleContent">
+              <div class="description">
+                <h2>Browse movies by Genres</h2>
+                <br>
+              </div>
+              <div class="genres">
+                <%Genres.forEach(function(genre){%>
+                  <a href="/genre/<%=genre.Name%>"><h5><%=genre.Name%></h5></a>
+               <% })%>
+              </div>
             </div>
-            <div class="genres">
-              <%Genres.forEach(function(genre){%>
-                <a href="/genre/<%=genre.Name%>"><h5><%=genre.Name%></h5></a>
-             <% })%>
-            </div>
-        
-          
           </div>
           <%- include('./partials/footer.ejs')%>
         </div>

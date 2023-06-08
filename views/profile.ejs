@@ -53,8 +53,9 @@
                         <div class="watchlistItem">
                           <img src="<%= watchlistItem.dataValues.Movie.Poster %>" height="90px" width="60px">
                           <a class="link" href="/movie/<%=watchlistItem.dataValues.Movie.Title%>">
-                            <p><%=watchlistItem.dataValues.Movie.Title %></a><button class="btn" onclick="deleteFromWatchlist(`<%=watchlistItem.dataValues.Movie.Title%>`,`<%=user.name%>`)" 
-                              title="Remove from watchlist"><i class="fa fa-trash" aria-hidden="true"></i></button></p>
+                            <p><%=watchlistItem.dataValues.Movie.Title %></a></p>
+                            <button class="btn" onclick="deleteFromWatchlist(`<%=watchlistItem.dataValues.Movie.Title%>`,`<%=user.name%>`)" 
+                              title="Remove from watchlist"><i class="fa fa-trash" aria-hidden="true"></i></button>
                           
                         </div>
                         
@@ -89,7 +90,7 @@
                 <%} else{%>
                 <h4>Sign in to manage your profile</h4>
                 <form action="/login">
-                  <input type="submit" value="Sign in" />
+                  <input id="input" type="submit" value="Sign in" />
                 </form>
                 <%}%>
               </div>
@@ -137,7 +138,7 @@
                   <option value="yoda">Yoda</option></select
                 ><br /><br />
 
-                <input type="submit" onclick="refresh()" value="Submit" />
+                <input id="input" type="submit" onclick="refresh()" value="Submit" />
               </form>
         
             </div><!--WRapper ProfileForm-->

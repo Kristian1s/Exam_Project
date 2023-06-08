@@ -48,6 +48,19 @@ class ReviewService{
           ]
         });
       }
+
+      async findManyWithMovieId(movieId) {
+        return this.Review.findAll({
+          where: {
+            MovieId: movieId
+          },
+          include:[
+            {
+                model: this.User
+            }
+          ]
+        });
+      }
       async destroyReviews(userId) {
         return this.Review.destroy({
             where: {

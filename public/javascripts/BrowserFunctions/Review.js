@@ -1,15 +1,24 @@
+var isReviewing = false;
+
 function handleReview(username, movieId) {
     // Create a container div
     const container = document.createElement('div');
     
     // Create a select element for the rating
     const ratingSelect = document.createElement('select');
+    const ratingLabel = document.createElement('label');
+    ratingLabel.textContent = 'Rating: '; // Set the label text
+    
     for (let i = 1; i <= 10; i++) {
       const option = document.createElement('option');
       option.value = i;
       option.text = i;
       ratingSelect.appendChild(option);
     }
+    
+    // Append the label and rating select to the container div
+    container.appendChild(ratingLabel);
+    container.appendChild(ratingSelect);
     
     // Create a textarea element for the review text
     const textarea = document.createElement('textarea');
@@ -56,8 +65,11 @@ function handleReview(username, movieId) {
       }
     });
     
-    // Append the container div to the desired element in the DOM
-    const reviewWrapper = document.querySelector('.reviewWrapper');
-    reviewWrapper.appendChild(container);
+    if(!isReviewing){
+      isReviewing = true;
+      // Append the container div to the desired element in the DOM
+      const reviewBox = document.querySelector('.reviewBox');
+      reviewBox.appendChild(container);
+    }
   }
   

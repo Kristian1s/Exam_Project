@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op} = require("sequelize");
 class MovieService{
     constructor(db){
         this.client = db.sequelize; 
@@ -87,7 +87,28 @@ class MovieService{
           ]
         });
       }
-
+      async findRandom(movieId) {
+        return this.Movie.findOne({
+          where: {
+            id: movieId
+          },
+          include: [
+            {
+              model: this.Year
+            },{
+              model: this.Actor,
+            through: this.MovieActor
+          },{
+              model: this.Genre,
+            through: this.MovieGenre
+          },{
+            model: this.Director,
+          },{
+            model: this.Rating
+          }
+          ]
+        });
+      }
 
     }
     

@@ -7,6 +7,9 @@ var movieService = new MovieService(db);
 const ReviewService = require("../services/reviewService");
 const reviewService = new ReviewService(db);
 
+function getRandomNumber() {
+  return Math.floor(Math.random() * 200) + 1;
+}
 
 let flag = true;
 
@@ -15,10 +18,12 @@ router.get('/', async function (req, res, next) {
     await writeDataToDb();
     flag = false;
   }
-
+  const randomId = getRandomNumber();
   const top10RatedMovies = await movieService.findTen();
   const recentReviews = await reviewService.findRecentReviews();
   const findGoodReviewedMovies = await reviewService.findHighReview();
+  const featuredMovie = await movieService.findRandom(randomId);
+  console.log('featuredMovie :', featuredMovie);
 
   let combinedData = {
     highlyRatedMovie: null,
@@ -38,7 +43,7 @@ router.get('/', async function (req, res, next) {
     }
   }
 
-  res.render('index', {title: 'MovieVault',Top10: top10RatedMovies,Reviews: recentReviews,GoodMovie: combinedData,isAuthenticated: req.oidc.isAuthenticated()
+  res.render('index', {title: 'MovieVault',Top10: top10RatedMovies, FeaturedMovie: featuredMovie, Reviews: recentReviews,GoodMovie: combinedData,isAuthenticated: req.oidc.isAuthenticated()
   });
 });
 

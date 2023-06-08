@@ -5,6 +5,53 @@ body {
   background-color: #159895;
 }
 
+:root{
+  --light: #57C5B6;
+  --medium-might: #159895;
+  --medium-dark: #1A5F7A;
+  --dark: #1A5F7A;
+  --border-circle: 20px;
+}
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+button{
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 10px !important;
+  border: none;
+
+  background: var(--dark);
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: var(--light);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+#input{
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 10px !important;
+  border: none;
+
+  background: var(--dark);
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: var(--light);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+}
+
+
+
 .middle {
  
   margin: 0 auto;
@@ -13,10 +60,17 @@ body {
 
 
 }
-.middleContent{
-  padding-top: 20px;
-  background-color: #ffffff;
-text-align: center;
+.genrePageWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.genrePageWrapper .middleContent{
+  border-radius: var(--border-circle);
+  margin-top: 98px;
+  padding: 20px;
+  background-color: var(--light);
+  text-align: center;
   max-width: 30%;
   box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
 }
@@ -117,6 +171,9 @@ body.modal-open {
   overflow: hidden;
 }
 .wrapperContent{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
   padding: 10px;
 }
 
@@ -234,25 +291,53 @@ body.modal-open {
   align-items: center;
 }
 
+.watchlistItem p {
+  margin: 0 auto 0 0;
+}
+
+.watchlistItem .btn{
+  margin-right: 8px;
+}
+
 
 
 .link{
   text-decoration: underline;
-  color:  #212529;;
+  color:  var(--dark);
+  font-size: 1.5rem;
 }
 
  .reviewWrapper {
   background-color: #ffffff;
-  height: 17rem;
-  display: flex;
-  
+  height: 33%;
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 5px 3px 3px rgba(0, 0, 0, 0.15);
+  margin: 5px 5px 5px 5px;
+}
+.reviewWrapper img{
+  border-radius: 100%;
+}
+.reviewContainer{
+  border-style: solid;
+  height:70%;
+}
+.reviewBox{
+  text-align: center;
+  width: 20%;
+ 
 }
 .genres{
   color: #212529;
-  background-color: #ffffff;
-  padding-top: 20px;
+  background-color: var(--light);
+  padding: 20px 0 20px 20px;
   overflow-y: auto;
   max-height: 900px;
+  text-align: left;
+
 }
 a h5{
   color: #212529;
@@ -266,31 +351,7 @@ a p{
   text-decoration: underline;
 }
 a:visited {
-  
+
+  text-decoration: none !important;
   background-color: transparent;
-  text-decoration: underline;
 }
-/*
-.reviewNode {
-  flex: 1;
-  margin: 0 10px;
-  background-color: lightgray;
-} */
-
-
-/* .movieReview button {
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-
-.reviewName{
-  padding-left: 10px;
-  padding-bottom: 0px;
-}
-
-.leaveReview{
-  text-align: left ;
-} */

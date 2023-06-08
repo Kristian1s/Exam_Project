@@ -27,7 +27,8 @@ router.get('/', function(req, res, next) {
 router.get('/:title', async function(req, res, next) {
   const title = req.params.title;
   const movie = await movieService.find(title);
-  let review = await reviewService.findWithMovieId(movie.id);
+  let reviews = await reviewService.findManyWithMovieId(movie.id);
+  console.log('reviews :', reviews);
 
 
   if (req.oidc.isAuthenticated()) {
@@ -35,14 +36,15 @@ router.get('/:title', async function(req, res, next) {
 
  
     const userExists = await userService.find(username);
+   
 
 
    
     if (userExists) {
-      return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: userExists,Reviews: review,isAuthenticated: req.oidc.isAuthenticated()});
+      return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: userExists,Reviews: reviews,isAuthenticated: req.oidc.isAuthenticated()});
     }
 
-    return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: false,Reviews: review,isAuthenticated: req.oidc.isAuthenticated()});
+    return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: false,Reviews: reviews,isAuthenticated: req.oidc.isAuthenticated()});
   }
 
   return res.render('movie', {title: 'MovieVault',Movie: movie,UserInfo: false,Reviews: false,isAuthenticated: req.oidc.isAuthenticated()});
