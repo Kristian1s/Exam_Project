@@ -13,14 +13,20 @@ var ActorService = require("../services/actorService");
 var actorService = new ActorService(db);
 var RatingService = require("../services/ratingService");
 var ratingService = new RatingService(db);
-
+var UserService = require("../services/userService");
+var userService = new UserService(db);
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-     const movies = await movieService.getAll();
-     
-
-    res.render('topRated', { title: 'MovieVault', Movies: movies, isAuthenticated: req.oidc.isAuthenticated()});
+  const movies = await movieService.getAll();
+if(req.oidc.user){
+  const username = req.oidc.user.name;
+  const userHasProfile = await userService.find(username);
+  if(userHasProfile){
+    res.render('topRated', { title: 'MovieVault', Movies: movies, HasProfile: userHasProfile, isAuthenticated: req.oidc.isAuthenticated()});
+  }
+}
+res.render('topRated', { title: 'MovieVault', Movies: movies, HasProfile: false, isAuthenticated: req.oidc.isAuthenticated()});
   }
 );
 

@@ -53,9 +53,11 @@
                         <div class="watchlistItem">
                           <img src="<%= watchlistItem.dataValues.Movie.Poster %>" height="90px" width="60px">
                           <a class="link" href="/movie/<%=watchlistItem.dataValues.Movie.Title%>">
-                            <p><%= watchlistItem.dataValues.Movie.Title %></p>
-                          </a>
+                            <p><%=watchlistItem.dataValues.Movie.Title %></a><button class="btn" onclick="deleteFromWatchlist(`<%=watchlistItem.dataValues.Movie.Title%>`,`<%=user.name%>`)" 
+                              title="Remove from watchlist"><i class="fa fa-trash" aria-hidden="true"></i></button></p>
+                          
                         </div>
+                        
                       </div>
                     <% }); %>
                   </div>
@@ -165,6 +167,24 @@
     .catch((response) => {
         alert(response.statusText);
     }); 
+}
+async function deleteFromWatchlist(movieTitle, username) {
+  const response = await fetch("/profile/watchlist", {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      MovieTitle: movieTitle,
+      UserName: username
+    })
+  });
+
+  if (response.ok) {
+    location.reload(); // Refresh the page
+  } else {
+    alert("Error occurred while adding to watchlist");
+  }
 }
           </script>
       </body>

@@ -82,12 +82,31 @@ router.delete("/", requiresAuth(), async function(req, res, next) {
 
 
 router.post("/watchlist", requiresAuth(), async function(req, res, next) {
-  const {MovieId, UserName} = req.body;
+  const { MovieId, UserName } = req.body;
 
-   const user = await userService.find(UserName);
+  const user = await userService.find(UserName);
   const userId = user.id;
-  const makeWatchlist = await watchlistService.create(MovieId, userId,)
-  res.status(200).json({ message: 'Movie Added to watchlist' }); 
+
+  const checkWatchlist = await watchlistService.checkUsersWatchlistForMovie(MovieId, userId);
+  console.log('checkWatchlist :', checkWatchlist);
+  
+  if (checkWatchlist) {
+    res.status(200).json({ message: "Movie is already in your watchlist" });
+  } else{
+    const watchlist = await watchlistService.create(MovieId, userId);
+    res.status(200).json({ message: 'Movie Added to watchlist' });
+  }
 });
+
+router.delete("/watchlist", requiresAuth(), async function(req,res,next){
+  const {MovieTitle, UserName} = req.body;
+
+  const movie = await movieService.find(MovieTitle)
+  const movieId = movie.id;
+  const user = await userService.find(UserName);
+  const userId = user.id;
+  const removeMovie = await watchlistService.removeFromWatchlist(movieId, userId);
+  res.status(200).json({ message: 'Movie removed from watchlist' });
+})
 
 module.exports = router;

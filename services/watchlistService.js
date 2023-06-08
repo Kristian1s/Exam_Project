@@ -48,6 +48,24 @@ class WatchlistService{
           }
         });
       }
+
+      async removeFromWatchlist(movieId, userId) {
+        return this.Watchlist.destroy({
+          where: {
+            MovieId: movieId,
+            UserId: userId
+          }
+        });
+      }
+
+        async checkUsersWatchlistForMovie(movieId, userId) {
+        return this.Watchlist.findOne({
+          where: {
+            MovieId: movieId,
+            UserId: userId
+          }
+        });
+      }
     }
     
 module.exports = WatchlistService;
