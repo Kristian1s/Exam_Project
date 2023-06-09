@@ -32,7 +32,6 @@
                   <img class="card-img-left example-card-img-responsive" src="<%= movie.Poster %>" alt="Movie Poster" height="200px"/>
                   <div class="card-body">
                     <input class="hideCheckbox" id="ch<%=index%>" type="checkbox">
-                    <!-- TODO make sure movie.Year is brought up -->
                     <a class="top"href="/movie/<%= movie.Title %>"><h2 style="width:70%" class="card-title h5 h4-sm"><%= movie.Title %></a> (<%=movie.Year.Year %>)</h2>
                       <p class="rating"><i class="bi bi-star icon-yellow"></i><%=movie.Rating.Rating%>
                         <% if (isAuthenticated && HasProfile) { %>

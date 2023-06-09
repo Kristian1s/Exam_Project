@@ -25,13 +25,10 @@ function submitProfileForm(event) {
   })
     .then((response) => {
       console.log('Form submitted successfully');
-      // Reset the form fields if needed
       form.reset();
-      // Hide the profile form after submitting
       const wrapperProfile = document.querySelector('.wrapperProfileForm');
       wrapperProfile.style.display = 'none';
       document.body.classList.remove('modal-open');
-      // Refresh the page
       refreshPage();
     })
     .catch((error) => {
@@ -70,5 +67,4 @@ function handleAvatarChange(event) {
 }
 
 
-// Export the functions as a module
 export { initializeProfilePage, submitProfileForm, refreshPage, toggleProfileForm };

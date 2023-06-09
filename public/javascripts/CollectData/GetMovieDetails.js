@@ -1,4 +1,5 @@
 const { getTop100Titles, getAdditionalMovies } = require("./GetMoviesFromApis.js");
+require('dotenv').config();
 
 async function GetMovieDetails() {
   const movies = await getTop100Titles();
@@ -11,7 +12,7 @@ async function GetMovieDetails() {
       movies.map(async (movie) => {
         try {
           const response = await fetch(
-            `https://www.omdbapi.com/?apikey=dda73268&t=${encodeURIComponent(
+            `https://www.omdbapi.com/?apikey=${process.env.MOVIEAPIKEY}&t=${encodeURIComponent(
               movie.title
             )}`
           );
@@ -28,7 +29,7 @@ async function GetMovieDetails() {
       additionalMovies.map(async (movie) => {
         try {
           const response = await fetch(
-            `https://www.omdbapi.com/?apikey=dda73268&t=${encodeURIComponent(
+            `https://www.omdbapi.com/?apikey=${process.env.MOVIEAPIKEY}&t=${encodeURIComponent(
               movie.title
             )}`
           );

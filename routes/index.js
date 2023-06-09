@@ -23,7 +23,6 @@ router.get('/', async function (req, res, next) {
   const recentReviews = await reviewService.findRecentReviews();
   const findGoodReviewedMovies = await reviewService.findHighReview();
   const featuredMovie = await movieService.findRandom(randomId);
-  console.log('featuredMovie :', featuredMovie);
 
   let combinedData = {
     highlyRatedMovie: null,
@@ -42,8 +41,8 @@ router.get('/', async function (req, res, next) {
       };
     }
   }
-
-  res.render('index', {title: 'MovieVault',Top10: top10RatedMovies, FeaturedMovie: featuredMovie, Reviews: recentReviews,GoodMovie: combinedData,isAuthenticated: req.oidc.isAuthenticated()
+  res.render('index', {title: 'MovieVault',Top10: top10RatedMovies, FeaturedMovie: featuredMovie, Reviews: recentReviews,GoodMovie: combinedData,isAuthenticated: req.oidc.isAuthenticated(),
+  
   });
 });
 

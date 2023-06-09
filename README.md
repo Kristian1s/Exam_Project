@@ -14,19 +14,33 @@ Use the following SQL script to create the “myTodo” MySQL Database:
 
 Use the following SQL script to create an “admin” Database User with all database privileges:
 
+
 CREATE USER 'ProjectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY "P4ssword12";
 ALTER USER 'ProjectAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY "P4ssword12";
 GRANT ALL PRIVILEGES ON MovieDb.* TO 'ProjectAdmin'@'localhost';
 
+
+
 2. Next is getting the enviroment ready for running the app:
+
 - Open this repository in your code editor
+
 - Navigate to "Terminal" and open a new terminal
+
 - Make sure your terminal is at the correct cd, and input "npm install".
+
 - Create a file at the root directory named ".env" and paste in the variables you can find under     "Environment Variables".
+
 - After installing the dependencies type in "npm start" in the terminal.
+
 - When you start up the application, it will take some time initially, this is cause the server is writing the data to the database. After thats done it runs much faster
+
 - Now the database will be correctly created with tables and relationships, and the app is running.
+
 - You can access the app at "http://localhost:3000/"
+
+- To run the test open a new terminal while the app is running, and input "npm test"
+
 - To have access to certain user actions you will need to signup with Auth0, this is easy, just find "Sign in" on the navbar and follow instructions.
 
 
@@ -51,7 +65,11 @@ SECRET=FOJMjWx4pXMPmfRCggyoNerAHec79po5NND9VS3ndP3t50sKFn5ag1xFK7qJYtBy
 - ejs
 - mysql
 - mysql2
-- sequelize
+- sequelize         - ORM tool to handle crud and communication with backend and server.
+- jest              - Testing framework
+- supertest         - Testing framework
+- cheerio           - Testing framework
+- supertest-sesion  - Testing framework
 # NodeJS Version Used
 v18.15.0
 
