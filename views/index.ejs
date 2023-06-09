@@ -31,7 +31,7 @@
                   <br>
                     
                 <a href="/movie/<%=FeaturedMovie.Title%>"><h2><%=FeaturedMovie.Title%></h2></a><br>
-                <img src="<%=FeaturedMovie.Poster%>" alt="Image" width="350px" height="450px">
+                <img src="<%=FeaturedMovie.Poster%>" alt="Image" width="250px" height="350px">
                 <p><strong>Director: </strong><%=FeaturedMovie.Director.Name%></p>
                 <p><strong>Actors:</strong>
                   <%FeaturedMovie.Actors.forEach(function(actor, actorIndex) { %>
@@ -69,7 +69,20 @@
           </div>
   
           <div id="right">
-            <div id="rightTop">Right Top</div>
+            <div id="rightTop">
+              <h4>Welcome to MovieVault!</h4>
+              <div id="welcomeText">
+              <p>MovieVault is a moviedatabase for the top rated movies. Head over to the profile tab 
+                 to create your profile and get started with planning a watchlist, and leaving reviews for others to see!
+                </p>
+              </div>
+            </div>
+
+
+
+
+
+
             <div id="rightBot">
                 <h3 class="h3review">Other users loved:</h3>
                 <%if(GoodMovie.highlyRatedMovie === null || GoodMovie.movieDetails === null){%>
