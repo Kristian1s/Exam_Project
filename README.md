@@ -43,7 +43,7 @@ GRANT ALL PRIVILEGES ON MovieDb.* TO 'ProjectAdmin'@'localhost';
 
 - Now the database will be correctly created with tables and relationships, and the app is running.
 
-- You can access the app at "http://localhost:3000/"
+- You can access the app at "http://localhost:3000/" (Sometimes you will need to reload the page if it fails)
 
 - To run the test open a new terminal while the app is running, and input "npm test"
 

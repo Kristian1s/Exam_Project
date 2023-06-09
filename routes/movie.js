@@ -18,7 +18,6 @@ router.get('/:title', async function(req, res, next) {
   const title = req.params.title;
   const movie = await movieService.find(title);
   let reviews = await reviewService.findManyWithMovieId(movie.id);
-  console.log('reviews :', reviews);
 
 
   if (req.oidc.isAuthenticated()) {

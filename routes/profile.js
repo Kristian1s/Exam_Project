@@ -78,7 +78,7 @@ router.post("/watchlist", requiresAuth(), async function(req, res, next) {
   const userId = user.id;
 
   const checkWatchlist = await watchlistService.checkUsersWatchlistForMovie(MovieId, userId);
-  console.log('checkWatchlist :', checkWatchlist);
+ 
   
   if (checkWatchlist) {
     res.status(200).json({ message: "Movie is already in your watchlist" });
