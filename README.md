@@ -1,6 +1,6 @@
 # Exam project --MovieVault--
 ## This is my examProject making a fullstack moviedatabase app with authentication, RESTful API and a mysql backend.
-- The app boots up pretty slowly when u initially run it, due to a large script being executed, so give it a few seconds on startup.
+- The app boots up pretty slowly when you initially run it, due to a large script being executed, so give it a few seconds on startup.
 
 - The script queries external API's for movieTitles, and then an api with the titles to retrieve various data about each movie. It then creates nessecary tables and populates tables with data and keys. This could easily be avoided with just storing data as json, but i chose to stick with this method to display the use of external data and data handling.
 
@@ -11,7 +11,7 @@
 
 - STEP 1: Create the database in MySQL Workbench:
 
-Use the following SQL script to create the “myTodo” MySQL Database:
+Use the following SQL script to create the “MovieDb" MySQL Database:
 
     create schema MovieDb;
 
